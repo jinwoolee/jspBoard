@@ -1,4 +1,4 @@
-/*�Խ��� ī�װ���*/
+/*게시판 카테고리*/
 ALTER TABLE boardCategory
 	DROP
 		PRIMARY KEY
@@ -7,27 +7,27 @@ ALTER TABLE boardCategory
 
 DROP INDEX PK_boardCategory;
 
-/* �Խ��� ī�װ��� */
+/* 게시판 카테고리 */
 DROP TABLE boardCategory 
 	CASCADE CONSTRAINTS;
 
-/* �Խ��� ī�װ��� */
+/* 게시판 카테고리 */
 CREATE TABLE boardCategory (
-	no NUMBER NOT NULL, /* �Խ��� ī�װ��� ��ȣ */
-	code VARCHAR2(50) NOT NULL, /* ī�װ��� �ڵ� */
-	memo VARCHAR2(200), /* ī�װ��� ���� */
-	reg_id VARCHAR2(50) NOT NULL /* �ۼ��� */
+	no NUMBER NOT NULL, /* 게시판 카테고리 번호 */
+	code VARCHAR2(50) NOT NULL, /* 카테고리 코드 */
+	memo VARCHAR2(200), /* 카테고리 설명 */
+	reg_id VARCHAR2(50) NOT NULL /* 작성자 */
 );
 
-COMMENT ON TABLE boardCategory IS '�Խ��� ī�װ���';
+COMMENT ON TABLE boardCategory IS '게시판 카테고리';
 
-COMMENT ON COLUMN boardCategory.no IS '�Խ��� ī�װ��� ��ȣ';
+COMMENT ON COLUMN boardCategory.no IS '게시판 카테고리 번호';
 
-COMMENT ON COLUMN boardCategory.code IS 'ī�װ��� �ڵ�';
+COMMENT ON COLUMN boardCategory.code IS '카테고리 코드';
 
-COMMENT ON COLUMN boardCategory.memo IS 'ī�װ��� ����';
+COMMENT ON COLUMN boardCategory.memo IS '카테고리 설명';
 
-COMMENT ON COLUMN boardCategory.reg_id IS '�ۼ���';
+COMMENT ON COLUMN boardCategory.reg_id IS '작성자';
 
 CREATE UNIQUE INDEX PK_boardCategory
 	ON boardCategory (

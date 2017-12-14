@@ -1,6 +1,6 @@
 
 
 delete boardCategory where no in (1,2,3);
-insert into boardCategory values (1, 'board001', '°øÁö»çÇ×', 'brown');
-insert into boardCategory values (2, 'board002', '°æÁ¶»ç', 'sally');
-insert into boardCategory values (3, 'board003', 'ÀÚÀ¯°Ô½ÃÆÇ', 'cony');
+insert into boardCategory values (1, 'board001', 'ê³µì§€ì‚¬í•­', 'brown');
+insert into boardCategory values (2, 'board002', 'ê²½ì¡°ì‚¬', 'sally');
+insert into boardCategory values (3, 'board003', 'ììœ ê²Œì‹œíŒ', 'cony');
