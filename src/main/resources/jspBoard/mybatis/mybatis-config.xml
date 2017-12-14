@@ -2,19 +2,20 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	
-	<properties resource="mybatis/testDb.properties" />
+	<properties resource="mybatis/db.properties" />
 
 	<typeAliases>
 		
 	</typeAliases>
 	
     <environments default="development">
-		<environment id="development">
-			<!-- <transactionManager type="JDBC"/>			
+		 <environment id="development">
+		<!--	<transactionManager type="JDBC"/>			
 			<dataSource type="JNDI">
 				<property name="data_source" value="java:comp/env/jdbc/oracleDB"/>
-			</dataSource> -->
+			</dataSource>-->
 		
+			
 			<transactionManager type="JDBC" /> 
 				<dataSource type="POOLED">
 				<property name="driver" value="${jdbc.driver}" />
@@ -25,11 +26,7 @@
 		</environment>
 	</environments>
 	
-	
-	
 	<mappers>
-		<mapper resource="mybatis/mapper/member.xml" />
-		<mapper resource="mybatis/mapper/user.xml" />
 	</mappers>
 	
 </configuration>

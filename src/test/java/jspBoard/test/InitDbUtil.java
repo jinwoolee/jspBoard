@@ -1,23 +1,26 @@
-package boardCategory.dao;
-
-import static org.junit.Assert.assertEquals;
+package jspBoard.test;
 
 import org.apache.commons.dbcp2.BasicDataSource;
+import org.apache.ibatis.session.SqlSession;
+import org.junit.After;
 import org.junit.Before;
-import org.junit.Test;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.jdbc.datasource.init.DatabasePopulatorUtils;
 import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 
-/*@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations={"/springDb/application-context.xml",
-								"/springDb/context-datasource.xml"})*/
-public class BoardCategoryDaoTest {
+import jspBoard.boardCategory.dao.BoardCategoryDao;
+import jspBoard.boardCategory.dao.IBoardCategoryDao;
+import jspBoard.mybatis.SqlMapSessionFactory;
 
+public class InitDbUtil {
+	protected	SqlSession sqlSession;
+	protected	IBoardCategoryDao boardCategoryDao;
+	
 	@Before
 	public void setup() {
+		//db Ï¥àÍ∏∞Ìôî
 		ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
-		populator.addScript(new ClassPathResource("/dbinit/jspBoardInit.sql" ));
+		populator.addScript(new ClassPathResource("jspBoard/dbinit/jspBoardInit.sql" ));
 		populator.setContinueOnError(false);
 		
 		BasicDataSource bds = new BasicDataSource();
@@ -26,17 +29,15 @@ public class BoardCategoryDaoTest {
 		bds.setUsername("jspboardTest");
 		bds.setPassword("jspboardTest");
 		DatabasePopulatorUtils.execute(populator , bds);
+		
+		//ÌÖåÏä§Ìä∏ ÎåÄÏÉÅ
+		sqlSession = SqlMapSessionFactory.getSqlSessionFactory().openSession();
+		boardCategoryDao = new BoardCategoryDao();
 	}
 	
-	//∞‘Ω√∆« ƒ´≈◊∞Ì∏Æ ¡∂»∏ ≈◊Ω∫∆Æ
-	@Test
-	public void getBoardCategoryTest() {
-		/***Given***/
-		
-		/***When***/
-		
-		/***Then***/
-		assertEquals(1, 1);
+	@After
+	public void tearDown() {
+		sqlSession.commit();
+		sqlSession.close();
 	}
-
 }
