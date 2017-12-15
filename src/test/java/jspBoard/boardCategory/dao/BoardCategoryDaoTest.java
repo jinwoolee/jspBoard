@@ -24,6 +24,12 @@ import jspBoard.test.InitDbUtil;
 
 public class BoardCategoryDaoTest extends InitDbUtil{
 	private	Logger logger = LoggerFactory.getLogger(BoardCategoryDaoTest.class);
+	private	IBoardCategoryDao boardCategoryDao;
+	
+	@Before
+	public void setUp() {
+		boardCategoryDao = new BoardCategoryDao();
+	}
 	
 	//게시판 카테고리 조회 테스트
 	@Test
@@ -57,7 +63,7 @@ public class BoardCategoryDaoTest extends InitDbUtil{
 	public void activeBoardCategoryTest() {
 		/***Given***/
 		BoardCategoryVo vo = new BoardCategoryVo();
-		vo.setNo(1);
+		vo.setCategoryNo(1);
 		vo.setActYn("N");
 		
 		/***When***/
@@ -72,14 +78,14 @@ public class BoardCategoryDaoTest extends InitDbUtil{
 	public void getBoardCategoryTest() {
 		/***Given***/
 		BoardCategoryVo boardCategoryVo = new BoardCategoryVo();
-		boardCategoryVo.setNo(1);
+		boardCategoryVo.setCategoryNo(1);
 		
 		/***When***/
 		BoardCategoryVo resultVo = boardCategoryDao.getBoardCategory(sqlSession, boardCategoryVo);
 
 		/***Then***/
 		assertEquals("board001", resultVo.getCode());
-		assertEquals(new Integer(1), resultVo.getNo());
+		assertEquals(new Integer(1), resultVo.getCategoryNo());
 	}
 
 }

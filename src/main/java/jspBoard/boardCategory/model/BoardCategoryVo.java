@@ -22,29 +22,29 @@ import java.util.Date;
  */
 public class BoardCategoryVo {
 	
-	private	Integer	no;			//게시판 카테고리 번호
+	private	Integer	categoryNo;	//게시판 카테고리 번호
 	private	String	code;		//카테고리 코드
 	private	String	memo;		//카테고리 설명
 	private	String	actYn;		//게시판 카테고리 활성화 여부		
 	private	String	regId;		//작성자
 	private	Date	regDt;		//작성일시
 	
-	public BoardCategoryVo(Integer no, String code, String memo, String actYn, String regId) {
-		this.no		=	no;
-		this.code	=	code;
-		this.memo	=	memo;
-		this.actYn	=	actYn;
-		this.regId	=	regId;
+	public BoardCategoryVo(Integer categoryNo, String code, String memo, String actYn, String regId) {
+		this.categoryNo	=	categoryNo;
+		this.code		=	code;
+		this.memo		=	memo;
+		this.actYn		=	actYn;
+		this.regId		=	regId;
 	}
 
 	public BoardCategoryVo() {
 		
 	}
-	public Integer getNo() {
-		return no;
+	public Integer getCategoryNo() {
+		return categoryNo;
 	}
-	public void setNo(Integer no) {
-		this.no = no;
+	public void setCategoryNo(Integer categoryNo) {
+		this.categoryNo = categoryNo;
 	}
 	public String getCode() {
 		return code;
@@ -61,11 +61,9 @@ public class BoardCategoryVo {
 	public String getActYn() {
 		return actYn;
 	}
-
 	public void setActYn(String actYn) {
 		this.actYn = actYn;
 	}
-
 	public String getRegId() {
 		return regId;
 	}
@@ -81,8 +79,8 @@ public class BoardCategoryVo {
 
 	@Override
 	public String toString() {
-		return "BoardCategoryVo [no=" + no + ", code=" + code + ", memo=" + memo + ", actYn=" + actYn + ", regId="
-				+ regId + ", regDt=" + regDt + "]";
+		return "BoardCategoryVo [categoryNo=" + categoryNo + ", code=" + code + ", memo=" + memo + ", actYn=" + actYn
+				+ ", regId=" + regId + ", regDt=" + regDt + "]";
 	}
 	
 }

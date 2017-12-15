@@ -11,21 +11,21 @@
 
 <!-- 게시판 카테고리 입력 -->
 <insert id="insertCategory" parameterType="boardCategoryVo">
-	insert into boardCategory (no, code, memo, actYn, regId, regDt)
-		values (#{no}, #{code}, #{memo}, #{actYn}, #{regId}, sysdate)
+	insert into boardCategory (categoryNo, code, memo, actYn, regId, regDt)
+		values (#{categoryNo}, #{code}, #{memo}, #{actYn}, #{regId}, sysdate)
 </insert>
 
 <!-- 게시판 카테고리 활성화 설정 -->
 <update id="activeBoardCategory" parameterType="boardCategoryVo">
 	update boardCategory set actYn = #{actYn}
-	where no = #{no}
+	where categoryNo = #{categoryNo}
 </update>
 
 <!-- 게시판 카테고리 조회 -->
 <select id="getBoardCategory" parameterType="boardCategoryVo" resultType="boardCategoryVo">
 	select *
 	 from boardCategory
-	where no = #{no}
+	where categoryNo = #{categoryNo}
 </select>
 
 </mapper>

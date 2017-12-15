@@ -6,6 +6,7 @@
 
 	<typeAliases>
 		<typeAlias alias="boardCategoryVo" type="jspBoard.boardCategory.model.BoardCategoryVo" />		
+		<typeAlias alias="boardVo" type="jspBoard.board.model.BoardVo" />
 	</typeAliases>
 	
     <environments default="development">
@@ -29,6 +30,7 @@
 	
 	<mappers>
 		<mapper resource="jspBoard/boardCategory/dao/boardCategory.xml" />
+		<mapper resource="jspBoard/board/dao/board.xml" />
 	</mappers>
 	
 </configuration>

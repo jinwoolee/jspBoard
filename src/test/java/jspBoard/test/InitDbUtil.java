@@ -14,7 +14,6 @@ import jspBoard.mybatis.SqlMapSessionFactory;
 
 public class InitDbUtil {
 	protected	SqlSession sqlSession;
-	protected	IBoardCategoryDao boardCategoryDao;
 	
 	@Before
 	public void setup() {
@@ -32,12 +31,11 @@ public class InitDbUtil {
 		
 		//테스트 대상
 		sqlSession = SqlMapSessionFactory.getSqlSessionFactory().openSession();
-		boardCategoryDao = new BoardCategoryDao();
 	}
 	
 	@After
 	public void tearDown() {
-		sqlSession.commit();
+		sqlSession.rollback();
 		sqlSession.close();
 	}
 }
