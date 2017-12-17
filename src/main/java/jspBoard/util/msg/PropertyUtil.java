@@ -38,7 +38,12 @@ public class PropertyUtil {
 	 * @throws FileNotFoundException 
 	 */
 	public static void msgPropertyGenerate() {
-		String propertyFile = "C:\\development\\workspace\\lecture\\jspBoard\\src\\main\\resources\\jspBoard\\msg\\msg_KO_KR.properties";
+		//String propertyFile = "C:\\development\\workspace\\lecture\\jspBoard\\src\\main\\resources\\jspBoard\\msg\\msg_KO_KR.properties";
+		
+		String path = PropertyUtil.class.getResource("/jspBoard/msg/").getPath();
+		if(path.startsWith("file:/"))
+			path = path.substring(path.indexOf("file:/") + "file:/".length());
+		String propertyFile = path + File.separator + "msg_KO_KR.properties";
 		
 		try {
 			File f = new File(propertyFile);
