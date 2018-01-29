@@ -37,4 +37,16 @@ public interface IBoardDao {
 	 */
 	List<BoardVo> getBoardPagingList(SqlSession sqlSession, BoardVo boardVo);
 
+	/**
+	  * @FileName : IBoardDao.java
+	  * @Project : jspBoard
+	  * @Date : 2018. 1. 29.
+	  * @작성자 : jw
+	  * @변경이력 :
+	  * @param boardVo
+	  * @return
+	  * @프로그램 설명 : 게시물 전체 건수 조회
+	  */
+	Integer getBoardTotalCnt(SqlSession sqlSession, BoardVo boardVo);
+
 }

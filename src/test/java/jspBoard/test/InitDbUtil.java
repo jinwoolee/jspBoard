@@ -10,7 +10,7 @@ import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 
 import jspBoard.boardCategory.dao.BoardCategoryDao;
 import jspBoard.boardCategory.dao.IBoardCategoryDao;
-import jspBoard.mybatis.SqlMapSessionFactory;
+import jspBoard.mybatis.SqlMapSessionFactoryTest;
 
 public class InitDbUtil {
 	protected	SqlSession sqlSession;
@@ -30,7 +30,7 @@ public class InitDbUtil {
 		DatabasePopulatorUtils.execute(populator , bds);
 		
 		//테스트 대상
-		sqlSession = SqlMapSessionFactory.getSqlSessionFactory().openSession();
+		sqlSession = SqlMapSessionFactoryTest.getSqlSessionFactory().openSession();
 	}
 	
 	@After

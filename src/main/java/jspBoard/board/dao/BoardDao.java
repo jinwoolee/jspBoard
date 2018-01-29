@@ -40,4 +40,19 @@ public class BoardDao implements IBoardDao {
 		return sqlSession.selectList("getBoardPagingList", boardVo);
 	}
 
+	/**
+	  * @FileName : BoardDao.java
+	  * @Project : jspBoard
+	  * @Date : 2018. 1. 29.
+	  * @작성자 : jw
+	  * @변경이력 :
+	  * @param boardVo
+	  * @return
+	  * @프로그램 설명 : 게시물 전체건수 조회
+	  */
+	@Override
+	public Integer getBoardTotalCnt(SqlSession sqlSession, BoardVo boardVo) {
+		return sqlSession.selectOne("getBoardTotalCnt", boardVo);
+	}
+
 }

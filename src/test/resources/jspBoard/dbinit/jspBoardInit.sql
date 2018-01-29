@@ -1,3 +1,6 @@
+
+--select * from notexistsBoard where rownum =1;
+
 --------------------------------초기 데이터 생성 START-------------------------------------------
 delete board where boardno between 1 and 14;
 delete boardCategory where categoryNo in (1,2,3);

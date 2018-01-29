@@ -19,7 +19,7 @@ import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 import jspBoard.boardCategory.dao.BoardCategoryDao;
 import jspBoard.boardCategory.dao.IBoardCategoryDao;
 import jspBoard.boardCategory.model.BoardCategoryVo;
-import jspBoard.mybatis.SqlMapSessionFactory;
+import jspBoard.mybatis.SqlMapSessionFactoryTest;
 import jspBoard.test.InitDbUtil;
 
 public class BoardCategoryDaoTest extends InitDbUtil{
