@@ -298,7 +298,7 @@ ALTER TABLE board
 		REFERENCES boardCategory (
 			categoryNo
 		);
-
+/*
 ALTER TABLE board
 	ADD
 		CONSTRAINT FK_board_TO_board
@@ -307,7 +307,7 @@ ALTER TABLE board
 		)
 		REFERENCES board (
 			boardNo
-		);
+		);*/
 
 ALTER TABLE board
 	ADD

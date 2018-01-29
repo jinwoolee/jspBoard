@@ -53,4 +53,18 @@ public class BoardDaoTest extends InitDbUtil{
 		assertEquals(4, boardList.size());
 		assertEquals(new Integer(1), boardList.get(3).getBoardNo());	//테스트 데이터 조회한 게시판 계층 쿼리의 마지막 게시물은 13번		
 	}
+	
+	//게시물 전체 건수 조회
+	@Test
+	public void getBoardTotalCnt() {
+		/***given***/
+		BoardVo boardVo = new BoardVo(1, 1, 10);
+		
+		/***when***/
+		Integer boardTotalCnt = boardDao.getBoardTotalCnt(sqlSession, boardVo);
+		logger.debug("boardTotalCnt : {} ", boardTotalCnt);
+		
+		/***then***/
+		assertEquals(14, boardTotalCnt.intValue());
+	}
 }
