@@ -31,16 +31,20 @@ public class FormBoardServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		//게시판 분류 확인
-		Integer categoryNo = Integer.parseInt(request.getParameter("categoryNo"));
-		categoryNo = categoryNo == null ? 1 : categoryNo;
+		String categoryNoParam = request.getParameter("categoryNo");
+		Integer categoryNo = categoryNoParam == null ? 1 : Integer.parseInt(request.getParameter("categoryNo"));
 		
-		BoardVo boardVo = new BoardVo(categoryNo, 1, 10);
+		//게시판 페이지
+		String pageStr = request.getParameter("page");
+		Integer page = pageStr == null ? 1 : Integer.parseInt(pageStr);
+		
+		BoardVo boardVo = new BoardVo(categoryNo, page, 10);
 	
 		BoardService boardService = new BoardServiceImpl();
-		SqlSession sqlSession = SqlMapSessionFactory.getSqlSessionFactory().openSession();
 		
-		Map<String, Object> resultMap = boardService.getBoardPagingList(sqlSession, boardVo);
+		Map<String, Object> resultMap = boardService.getBoardPagingList(boardVo);
 		request.setAttribute("boardList", resultMap.get("boardList"));
+		request.setAttribute("boardTotalCnt", resultMap.get("boardTotalCnt"));
 		
 		//게시판 페이징 처리
 		

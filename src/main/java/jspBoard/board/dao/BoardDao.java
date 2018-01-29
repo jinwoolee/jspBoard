@@ -37,7 +37,7 @@ public class BoardDao implements IBoardDao {
 	 */
 	@Override
 	public List<BoardVo> getBoardPagingList(SqlSession sqlSession, BoardVo boardVo) {
-		return sqlSession.selectList("getBoardPagingList", boardVo);
+		return sqlSession.selectList("jspBoard.board.dao.getBoardPagingList", boardVo);
 	}
 
 	/**
@@ -52,7 +52,37 @@ public class BoardDao implements IBoardDao {
 	  */
 	@Override
 	public Integer getBoardTotalCnt(SqlSession sqlSession, BoardVo boardVo) {
-		return sqlSession.selectOne("getBoardTotalCnt", boardVo);
+		return sqlSession.selectOne("jspBoard.board.dao.getBoardTotalCnt", boardVo);
+	}
+
+	/** 
+	 * Method   : getBoardDetail
+	 * 최초작성일  : 2018. 1. 29. 
+	 * 작성자 : jw
+	 * 변경이력 : 
+	 * @param sqlSession
+	 * @param boardVo
+	 * @return 
+	 * Method 설명 : 게시물 상세조회 
+	 */
+	@Override
+	public BoardVo getBoardDetail(SqlSession sqlSession, BoardVo boardVo) {
+		return sqlSession.selectOne("jspBoard.board.dao.getBoardDetail", boardVo);
+	}
+
+	/** 
+	 * Method   : modifyBoard
+	 * 최초작성일  : 2018. 1. 29. 
+	 * 작성자 : jw
+	 * 변경이력 : 
+	 * @param sqlSession
+	 * @param boardVo
+	 * @return 
+	 * Method 설명 : 게시글 수정
+	 */
+	@Override
+	public int modifyBoard(SqlSession sqlSession, BoardVo boardVo) {
+		return sqlSession.update("jspBoard.board.dao.modifyBoard", boardVo);
 	}
 
 }

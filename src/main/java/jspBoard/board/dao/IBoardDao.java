@@ -49,4 +49,27 @@ public interface IBoardDao {
 	  */
 	Integer getBoardTotalCnt(SqlSession sqlSession, BoardVo boardVo);
 
+	/** 
+	 * Method   : getBoardDetail
+	 * 최초작성일  : 2018. 1. 29. 
+	 * 작성자 : jw
+	 * 변경이력 : 
+	 * @param boardVo
+	 * @return 
+	 * Method 설명 : 게시물 상세조회 
+	 */
+	BoardVo getBoardDetail(SqlSession sqlSession, BoardVo boardVo);
+
+	/** 
+	 * Method   : modifyBoard
+	 * 최초작성일  : 2018. 1. 29. 
+	 * 작성자 : jw
+	 * 변경이력 : 
+	 * @param sqlSession
+	 * @param boardVo
+	 * @return 
+	 * Method 설명 : 게시글 수정
+	 */
+	int modifyBoard(SqlSession sqlSession, BoardVo boardVo);
+
 }

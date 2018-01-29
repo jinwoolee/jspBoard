@@ -67,4 +67,37 @@ public class BoardDaoTest extends InitDbUtil{
 		/***then***/
 		assertEquals(14, boardTotalCnt.intValue());
 	}
+	
+	//게시글 상세조회
+	@Test
+	public void getBoardDetailTest() {
+		/***Given***/
+		BoardVo boardVo = new BoardVo();
+		boardVo.setBoardNo(1);
+
+		/***When***/
+		BoardVo getResultVo = boardDao.getBoardDetail(sqlSession, boardVo);
+		logger.debug("get result : {}", getResultVo);
+
+		/***Then***/
+		assertEquals(1, getResultVo.getBoardNo().intValue());
+	}
+	
+	//게시글 수정
+	@Test
+	public void modifyBoardTest() {
+		/***Given***/
+		BoardVo boardVo = new BoardVo();
+		boardVo.setBoardNo(1);
+		boardVo.setTitle("제목 수정입니다.");
+		boardVo.setContent("내용 수정입니다.");
+		boardVo.setRegId("brown");
+
+		/***When***/
+		int modifyCnt = boardDao.modifyBoard(sqlSession, boardVo);
+
+		/***Then***/
+		assertEquals(1, modifyCnt);
+	}
+	
 }

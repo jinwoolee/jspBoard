@@ -32,7 +32,7 @@ public class BoardServiceTest extends InitDbUtil{
 
 		/***When***/
 		//게시판 리스트
-		Map<String, Object> resultMap = boardService.getBoardPagingList(sqlSession, boardVo);
+		Map<String, Object> resultMap = boardService.getBoardPagingList(boardVo);
 		List<BoardVo> boardList = (List<BoardVo>)resultMap.get("boardList");
 		
 		//게시물 총 건수
@@ -43,7 +43,7 @@ public class BoardServiceTest extends InitDbUtil{
 		assertEquals(10, boardList.size());
 		assertEquals(new Integer(13), boardList.get(9).getBoardNo());	//테스트 데이터 조회한 게시판 계층 쿼리의 마지막 게시물은 13번
 		
-		assertEquals(14, boardTotalCnt.intValue());
+		assertEquals(14, boardTotalCnt.intValue());						//총 게시물은 14건
 		
 	}
 }

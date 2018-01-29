@@ -2,8 +2,6 @@ package jspBoard.board.service;
 
 import java.util.Map;
 
-import org.apache.ibatis.session.SqlSession;
-
 import jspBoard.board.model.BoardVo;
 
 public interface BoardService {
@@ -19,6 +17,6 @@ public interface BoardService {
 	  * @return
 	  * @프로그램 설명 : 게시판 리스트 조회
 	  */
-	Map<String, Object> getBoardPagingList(SqlSession sqlSession, BoardVo boardVo);
+	Map<String, Object> getBoardPagingList(BoardVo boardVo);
 
 }

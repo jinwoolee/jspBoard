@@ -30,14 +30,13 @@ public class BoardVo {
 	private String delYn;		//삭제여부
 	private Integer readCnt;	//조회수
 	private String regId;		//작성자
-	private Date regdt;			//작성일시
+	private Date regDt;			//작성일시
 	
 	private	Integer	lv;			//계층 level
 	private	Integer	rn;			//행 번호
 	
 	private	Integer	page;		//페이지
 	private	Integer	pageSize;	//페이지 사이즈
-	
 	
 	public BoardVo(int categoryNo, int page, int pageSize) {
 		this.categoryNo	=	categoryNo;
@@ -101,11 +100,11 @@ public class BoardVo {
 	public void setRegId(String regId) {
 		this.regId = regId;
 	}
-	public Date getRegdt() {
-		return regdt;
+	public Date getRegDt() {
+		return regDt;
 	}
-	public void setRegdt(Date regdt) {
-		this.regdt = regdt;
+	public void setRegDt(Date regdt) {
+		this.regDt = regdt;
 	}
 	public Integer getLv() {
 		return lv;
@@ -135,7 +134,7 @@ public class BoardVo {
 	public String toString() {
 		return "BoardVo [boardNo=" + boardNo + ", pboardNo=" + pboardNo + ", categoryNo=" + categoryNo + ", title="
 				+ title + ", content=" + content + ", ord=" + ord + ", delYn=" + delYn + ", readCnt=" + readCnt
-				+ ", regId=" + regId + ", regdt=" + regdt + "]";
+				+ ", regId=" + regId + ", regDt=" + regDt + "]";
 	}
 	
 }

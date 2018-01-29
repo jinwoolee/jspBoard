@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import jspBoard.board.dao.BoardDao;
 import jspBoard.board.dao.IBoardDao;
 import jspBoard.board.model.BoardVo;
+import jspBoard.mybatis.SqlMapSessionFactory;
 
 public class BoardServiceImpl implements BoardService {
 
@@ -26,8 +27,10 @@ public class BoardServiceImpl implements BoardService {
 	  * @프로그램 설명 : 게시판 리스트 조회 
 	  */
 	@Override
-	public Map<String, Object> getBoardPagingList(SqlSession sqlSession, BoardVo boardVo) {
+	public Map<String, Object> getBoardPagingList(BoardVo boardVo) {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
+		
+		SqlSession sqlSession = SqlMapSessionFactory.getSqlSessionFactory().openSession();
 		
 		//게시물 건수 조회
 		List<BoardVo> boardList = boardDao.getBoardPagingList(sqlSession, boardVo);
@@ -38,6 +41,7 @@ public class BoardServiceImpl implements BoardService {
 		resultMap.put("boardList", boardList);
 		resultMap.put("boardTotalCnt", boardTotalCnt);
 		
+		sqlSession.close();
 		return resultMap;
 	}
 

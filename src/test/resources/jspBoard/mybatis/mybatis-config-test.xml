@@ -29,7 +29,7 @@
 	
 	
 	<mappers>
-		<!-- <mapper resource="jspBoard/boardCategory/dao/boardCategory.xml" /> -->
+		<mapper resource="jspBoard/boardCategory/dao/boardCategory.xml" />
 		<mapper resource="jspBoard/board/dao/board.xml" />
 	</mappers>
 	
