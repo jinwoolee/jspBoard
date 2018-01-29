@@ -1,4 +1,8 @@
+
+--select * from notexistsBoard where rownum =1;
+
 --------------------------------초기 데이터 생성 START-------------------------------------------
+delete boardfile where boardno between 1 and 14;
 delete board where boardno between 1 and 14;
 delete boardCategory where categoryNo in (1,2,3);
 delete member where userid in ('brown', 'sally', 'cony', 'moon');
@@ -29,6 +33,9 @@ insert into board (boardNo, pBoardno, categoryNo, title, content, delYn, ord, re
 insert into board (boardNo, pBoardno, categoryNo, title, content, delYn, ord, readCnt, regId, regDt) values (13, 7, 1, '13번은 7번글의 하위 글입니다.', '13번글 내용입니다.', 'N', 1, 0, 'sally', sysdate);
 insert into board (boardNo, pBoardno, categoryNo, title, content, delYn, ord, readCnt, regId, regDt) values (14, 6, 1, '14번은 6번글의 하위 글입니다.', '14번글 내용입니다.', 'N', 1, 0, 'moon', sysdate);
 
+insert into boardfile (fileno, boardno, filenm, filepath, filetype, filesize) values (1, 1, 'brown.png', 'upload/', 'png', 5123);
+insert into boardfile (fileno, boardno, filenm, filepath, filetype, filesize) values (2, 1, 'sally.png', 'upload/', 'png', 5123);
+insert into boardfile (fileno, boardno, filenm, filepath, filetype, filesize) values (3, 1, 'cony.png', 'upload/', 'png', 5123);
 
 --------------------------------초기 데이터 생성 END-------------------------------------------
 
