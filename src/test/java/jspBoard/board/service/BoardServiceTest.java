@@ -43,7 +43,42 @@ public class BoardServiceTest extends InitDbUtil{
 		assertEquals(10, boardList.size());
 		assertEquals(new Integer(13), boardList.get(9).getBoardNo());	//테스트 데이터 조회한 게시판 계층 쿼리의 마지막 게시물은 13번
 		
-		assertEquals(14, boardTotalCnt.intValue());						//총 게시물은 14건
+		assertEquals(14, boardTotalCnt.intValue());						//총 게시물은 14건		
+	}
+	
+	//게시글 삭제
+	@Test
+	public void deleteBoardTest() {
+		/***given***/
+		BoardVo boardVo = new BoardVo();
+		boardVo.setBoardNo(1);
 		
+		/***when***/
+		int deleteCnt = boardService.deleteBoard(boardVo);
+		
+		/***then***/
+		assertEquals(1, deleteCnt);
+	}
+	
+	//게시글 입력
+	@Test
+	public void insertBoardTest() {
+		/***given***/
+		BoardVo boardVo = new BoardVo();
+		boardVo.setBoardNo(15);
+		boardVo.setPboardNo(0);
+		boardVo.setCategoryNo(1);
+		boardVo.setTitle("제목 수정입니다.");
+		boardVo.setContent("내용 수정입니다.");
+		boardVo.setDelYn("N");
+		boardVo.setOrd(0);
+		boardVo.setReadCnt(0);
+		boardVo.setRegId("brown");
+		
+		/***when***/
+		int insertCnt = boardService.insertBoard(boardVo);
+
+		/***then***/
+		assertEquals(1, insertCnt);
 	}
 }

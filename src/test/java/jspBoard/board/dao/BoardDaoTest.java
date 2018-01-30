@@ -100,4 +100,39 @@ public class BoardDaoTest extends InitDbUtil{
 		assertEquals(1, modifyCnt);
 	}
 	
+	//게시글 삭제
+	@Test
+	public void deleteBoardTest() {
+		/***given***/
+		BoardVo boardVo = new BoardVo();
+		boardVo.setBoardNo(1);
+		
+		/***when***/
+		int deleteCnt = boardDao.deleteBoard(sqlSession, boardVo);
+		
+		/***then***/
+		assertEquals(1, deleteCnt);
+	}
+	
+	//게시글 입력
+	@Test
+	public void insertBoardTest() {
+		/***given***/
+		BoardVo boardVo = new BoardVo();
+		boardVo.setBoardNo(15);
+		boardVo.setPboardNo(0);
+		boardVo.setCategoryNo(1);
+		boardVo.setTitle("제목 수정입니다.");
+		boardVo.setContent("내용 수정입니다.");
+		boardVo.setDelYn("N");
+		boardVo.setOrd(0);
+		boardVo.setReadCnt(0);
+		boardVo.setRegId("brown");
+		
+		/***when***/
+		int insertCnt = boardDao.insertBoard(sqlSession, boardVo);
+
+		/***then***/
+		assertEquals(1, insertCnt);
+	}
 }

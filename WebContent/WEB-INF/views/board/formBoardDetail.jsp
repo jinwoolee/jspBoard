@@ -15,7 +15,7 @@ $(function(){
 function initEvent(){
 	//목록버튼 클릭 이벤트 핸들러
 	$("#list").on("click", function(){
-		$("#frm").attr("action", "/formBoard");
+		$("#frm").attr("action", "/formBoardList");
 		$("#frm").attr("method", "get");
 		$("#frm").submit();
 	});

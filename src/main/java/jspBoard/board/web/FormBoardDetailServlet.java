@@ -9,12 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.ibatis.session.SqlSession;
-
-import jspBoard.board.dao.BoardDao;
-import jspBoard.board.dao.IBoardDao;
 import jspBoard.board.model.BoardVo;
-import jspBoard.mybatis.SqlMapSessionFactory;
+import jspBoard.board.service.BoardService;
+import jspBoard.board.service.BoardServiceImpl;
 
 /**
  * Servlet implementation class FormBoardDetailServlet
@@ -22,11 +19,11 @@ import jspBoard.mybatis.SqlMapSessionFactory;
 @WebServlet("/formBoardDetail")
 public class FormBoardDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private IBoardDao boardDao;
+	private BoardService boardService;
 	
     public FormBoardDetailServlet() {
         super();
-        boardDao = new BoardDao();
+        boardService = new BoardServiceImpl();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -36,11 +33,8 @@ public class FormBoardDetailServlet extends HttpServlet {
 		BoardVo boardVo = new BoardVo();
 		boardVo.setBoardNo(boardNo);
 		
-		SqlSession sqlSession = SqlMapSessionFactory.getSqlSessionFactory().openSession();
-		BoardVo resultVo = boardDao.getBoardDetail(sqlSession, boardVo);
+		BoardVo resultVo = boardService.getBoardDetail(boardVo);
 		request.setAttribute("boardVo", resultVo);
-		
-		sqlSession.close();
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/board/formBoardDetail.jsp");
 		rd.forward(request, response);

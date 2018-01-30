@@ -14,6 +14,8 @@ import org.apache.ibatis.session.SqlSession;
 import jspBoard.board.dao.BoardDao;
 import jspBoard.board.dao.IBoardDao;
 import jspBoard.board.model.BoardVo;
+import jspBoard.board.service.BoardService;
+import jspBoard.board.service.BoardServiceImpl;
 import jspBoard.mybatis.SqlMapSessionFactory;
 
 /**
@@ -22,11 +24,11 @@ import jspBoard.mybatis.SqlMapSessionFactory;
 @WebServlet("/formBoardModify")
 public class FormBoardModifySevlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private IBoardDao boardDao;
+	private BoardService boardService;
        
     public FormBoardModifySevlet() {
         super();
-        boardDao = new BoardDao();
+        boardService = new BoardServiceImpl();
     }
 
     //게시글 상세 조회
@@ -37,11 +39,8 @@ public class FormBoardModifySevlet extends HttpServlet {
 		BoardVo boardVo = new BoardVo();
 		boardVo.setBoardNo(boardNo);
 		
-		SqlSession sqlSession = SqlMapSessionFactory.getSqlSessionFactory().openSession();
-		BoardVo resultVo = boardDao.getBoardDetail(sqlSession, boardVo);
+		BoardVo resultVo = boardService.getBoardDetail(boardVo);
 		request.setAttribute("boardVo", resultVo);
-		
-		sqlSession.close();
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/board/formBoardModify.jsp");
 		rd.forward(request, response);
