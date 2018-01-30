@@ -1,14 +1,16 @@
 
 --select * from notexistsBoard where rownum =1;
 
---------------------------------초기 데이터 생성 START-------------------------------------------
-delete boardfile where boardno between 1 and 14;
-delete board where boardno between 1 and 14;
+
+--15 : 입력 테스트 데이터
+delete boardfile where boardno between 1 and 15;
+delete board where boardno between 1 and 15;
 delete boardCategory where categoryNo in (1,2,3);
 delete member where userid in ('brown', 'sally', 'cony', 'moon');
 
 delete msg;
 
+--------------------------------초기 데이터 생성 START-------------------------------------------
 insert into member (userId, userNm, userAlias, addr, addr2, zipcode, usergb) values ('brown', '브라운', '곰탱이', '', '', '', 'ADMIN');
 insert into member (userId, userNm, userAlias, addr, addr2, zipcode, usergb) values ('cony', '코니', '토끼', '', '', '', 'ADMIN');
 insert into member (userId, userNm, userAlias, addr, addr2, zipcode, usergb) values ('sally', '샐리', '병아리', '', '', '', 'ADMIN');

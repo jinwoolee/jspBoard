@@ -72,4 +72,29 @@ public interface IBoardDao {
 	 */
 	int modifyBoard(SqlSession sqlSession, BoardVo boardVo);
 
+	/**
+	  * @FileName : IBoardDao.java
+	  * @Project : jspBoard
+	  * @Date : 2018. 1. 29.
+	  * @작성자 : jw
+	  * @변경이력 :
+	  * @param sqlSession
+	  * @param boardVo
+	  * @return
+	  * @프로그램 설명 : 게시글 삭제
+	  */
+	int deleteBoard(SqlSession sqlSession, BoardVo boardVo);
+
+	/**
+	  * @FileName : IBoardDao.java
+	  * @Project : jspBoard
+	  * @Date : 2018. 1. 29.
+	  * @작성자 : jw
+	  * @변경이력 :
+	  * @param boardVo
+	  * @return
+	  * @프로그램 설명 : 게시글 입
+	  */
+	int insertBoard(SqlSession sqlSession, BoardVo boardVo);
+
 }

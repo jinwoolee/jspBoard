@@ -15,7 +15,7 @@ $(function(){
 
 function initEvent(){
 	$("#formBoard").on("click", function(){
-		$("#frm").attr("action", "/formBoard");
+		$("#frm").attr("action", "/formBoardList");
 		$("#frm").submit();
 	});
 }

@@ -27,7 +27,6 @@
 	</build>
 
 	<properties>
-		<m2eclipse.wtp.contextRoot>/</m2eclipse.wtp.contextRoot>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java-version>1.7</java-version>
 		<maven.compiler.source>1.7</maven.compiler.source>

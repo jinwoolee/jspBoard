@@ -41,4 +41,10 @@
 	update board set delYn = 'Y', regDt = sysdate
 	where boardNo = #{boardNo}
 </update>
+
+<!-- 게시물 입력 -->
+<insert id="insertBoard" parameterType="boardVo">
+	insert into board (boardNo, pBoardno, categoryNo, title, content, delYn, ord, readCnt, regId, regDt) 
+	values (#{boardNo}, #{pboardNo}, #{categoryNo}, #{title}, #{content}, #{delYn}, #{ord}, #{readCnt}, #{regId}, sysdate)
+</insert>
 </mapper> 

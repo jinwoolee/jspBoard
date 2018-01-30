@@ -85,4 +85,37 @@ public class BoardDao implements IBoardDao {
 		return sqlSession.update("jspBoard.board.dao.modifyBoard", boardVo);
 	}
 
+	/**
+	  * @FileName : BoardDao.java
+	  * @Project : jspBoard
+	  * @Date : 2018. 1. 29.
+	  * @작성자 : jw
+	  * @변경이력 :
+	  * @param sqlSession
+	  * @param boardVo
+	  * @return
+	  * @프로그램 설명 : 게시글 삭제
+	  */
+	@Override
+	public int deleteBoard(SqlSession sqlSession, BoardVo boardVo) {
+		return sqlSession.delete("jspBoard.board.dao.deleteBoard", boardVo);
+	}
+
+	/**
+	  * @FileName : BoardDao.java
+	  * @Project : jspBoard
+	  * @Date : 2018. 1. 30.
+	  * @작성자 : jw
+	  * @변경이력 :
+	  * @param boardVo
+	  * @return
+	  * @프로그램 설명 : 게시글 입력 
+	  */
+	@Override
+	public int insertBoard(SqlSession sqlSession, BoardVo boardVo) {
+		return sqlSession.insert("jspBoard.board.dao.insertBoard", boardVo);
+	}
+	
+	 
+
 }
