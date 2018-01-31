@@ -1,0 +1,3 @@
+--게시물 번호
+drop SEQUENCE seq_board;
+CREATE SEQUENCE seq_board  START WITH 1 INCREMENT BY 1 CACHE 20 NOCYCLE;

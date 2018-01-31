@@ -44,3 +44,8 @@ insert into boardfile (fileno, boardno, filenm, filepath, filetype, filesize) va
 
 --테스트 입력시 생성된 데이터 삭제
 delete boardCategory where categoryNo in (5);	--boarcCategory 입력테스트
+
+
+--sequence
+drop SEQUENCE seq_board;
+CREATE SEQUENCE seq_board  START WITH 15 INCREMENT BY 1 CACHE 20 NOCYCLE;

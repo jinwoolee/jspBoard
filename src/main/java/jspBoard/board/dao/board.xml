@@ -44,6 +44,7 @@
 
 <!-- 게시물 입력 -->
 <insert id="insertBoard" parameterType="boardVo">
+	<selectKey keyProperty="boardNo" resultType="Integer" order="BEFORE"> select seq_board.nextval from dual</selectKey>
 	insert into board (boardNo, pBoardno, categoryNo, title, content, delYn, ord, readCnt, regId, regDt) 
 	values (#{boardNo}, #{pboardNo}, #{categoryNo}, #{title}, #{content}, #{delYn}, #{ord}, #{readCnt}, #{regId}, sysdate)
 </insert>

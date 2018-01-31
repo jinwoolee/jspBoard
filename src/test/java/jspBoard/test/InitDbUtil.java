@@ -8,8 +8,6 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.jdbc.datasource.init.DatabasePopulatorUtils;
 import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 
-import jspBoard.boardCategory.dao.BoardCategoryDao;
-import jspBoard.boardCategory.dao.IBoardCategoryDao;
 import jspBoard.mybatis.SqlMapSessionFactoryTest;
 
 public class InitDbUtil {

@@ -10,15 +10,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import jspBoard.board.model.BoardVo;
+import jspBoard.board.service.BoardService;
+import jspBoard.board.service.BoardServiceImpl;
 
-@WebServlet("/formBoard")
+@WebServlet("/formBoardList")
 public class FormBoardServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    public FormBoardServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+	
+	private	BoardService boardService;
+	
+	public FormBoardServlet() {
+		super();
+		boardService = new BoardServiceImpl();
+	}
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -28,19 +32,17 @@ public class FormBoardServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//게시글 파라미터
-		int boardNo		=	Integer.parseInt(request.getParameter("boardNo"));
 		int pBboardNo	=	Integer.parseInt(request.getParameter("pBboardNo"));
 		int categoryNo	=	Integer.parseInt(request.getParameter("pcategoryNo"));
-		String delYn		=	"N";
+		String delYn	=	"N";
 		int ord			=	0;
-		String title		=	request.getParameter("title");
+		String title	=	request.getParameter("title");
 		String content	=	request.getParameter("content");
-		String regId		=	"brown";
+		String regId	=	"brown";
 		
 		BoardVo boardVo = new BoardVo();
-		boardVo.setBoardNo(boardNo);
-		//여기서부터
+		boardService.insertBoard(boardVo);
 		
+		response.sendRedirect("/formBoardList?boardNo=" + boardVo.getBoardNo());
 	}
-
 }

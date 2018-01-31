@@ -111,6 +111,8 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public int insertBoard(BoardVo boardVo) {
 		SqlSession sqlSession = SqlMapSessionFactory.getSqlSessionFactory().openSession();
+		
+		
 		int insertCnt = sqlSession.insert("jspBoard.board.dao.insertBoard", boardVo);
 		sqlSession.commit();
 		sqlSession.close();

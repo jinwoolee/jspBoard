@@ -119,7 +119,6 @@ public class BoardDaoTest extends InitDbUtil{
 	public void insertBoardTest() {
 		/***given***/
 		BoardVo boardVo = new BoardVo();
-		boardVo.setBoardNo(15);
 		boardVo.setPboardNo(0);
 		boardVo.setCategoryNo(1);
 		boardVo.setTitle("제목 수정입니다.");
