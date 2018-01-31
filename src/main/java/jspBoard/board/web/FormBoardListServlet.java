@@ -29,7 +29,8 @@ public class FormBoardListServlet extends HttpServlet {
 		
 		//게시판 분류 확인
 		String categoryNoParam = request.getParameter("categoryNo");
-		Integer categoryNo = categoryNoParam == null ? 1 : Integer.parseInt(request.getParameter("categoryNo"));
+		Integer categoryNo = (categoryNoParam == null || categoryNoParam.equals("") ) ?
+							1 : Integer.parseInt(categoryNoParam);
 		
 		//게시판 페이지
 		String pageStr = request.getParameter("page");
