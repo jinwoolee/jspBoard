@@ -6,3 +6,4 @@ target/*
 /target/**
 /bin/
 /reports/
+/checkstyle.xml

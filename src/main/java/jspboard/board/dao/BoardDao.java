@@ -109,13 +109,10 @@ public class BoardDao implements IBoardDao {
 	  * @변경이력 :
 	  * @param boardVo
 	  * @return
-	  * @프로그램 설명 : 게시글 입력 
+	  * @프로그램 설명 : 게시글 입력
 	  */
 	@Override
 	public int insertBoard(SqlSession sqlSession, BoardVo boardVo) {
 		return sqlSession.insert("jspBoard.board.dao.insertBoard", boardVo);
 	}
-	
-	 
-
 }
