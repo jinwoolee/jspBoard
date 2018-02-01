@@ -59,20 +59,22 @@ public class FormBoardServlet extends HttpServlet {
 		String uploadPath = getServletContext().getRealPath("/uploadFolder");
 		
 		for (Part part : parts) {
-			InputStream is = part.getInputStream();
-			InputStreamReader isr = new InputStreamReader(is);
-			char[] buff = new char[512];
-			
-			File f = new File(uploadPath + File.separator + part.getName());
-			FileWriter fw = new FileWriter(f);
-			
-			while(isr.read(buff) != -1) {
-				fw.write(buff);
+			if("uploadFile".equals(part.getName())) {
+				InputStream is = part.getInputStream();
+				InputStreamReader isr = new InputStreamReader(is);
+				char[] buff = new char[512];
+				
+				File f = new File(uploadPath + File.separator + part.getName());
+				FileWriter fw = new FileWriter(f);
+				
+				while(isr.read(buff) != -1) {
+					fw.write(buff);
+				}
+				
+				fw.close();
+				isr.close();
+				is.close();
 			}
-			
-			fw.close();
-			isr.close();
-			is.close();
 		}
 
 		BoardVo boardVo = new BoardVo();
