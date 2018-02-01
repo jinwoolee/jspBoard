@@ -11,26 +11,26 @@ import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 import jspboard.mybatis.SqlMapSessionFactoryTest;
 
 public class InitDbUtil {
-	protected	SqlSession sqlSession;
-	
+	protected SqlSession sqlSession;
+
 	@Before
 	public void setup() {
-		//db 초기화
+		// db 초기화
 		ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
-		populator.addScript(new ClassPathResource("jspboard/dbinit/jspBoardInit.sql" ));
+		populator.addScript(new ClassPathResource("jspboard/dbinit/jspBoardInit.sql"));
 		populator.setContinueOnError(false);
-		
+
 		BasicDataSource bds = new BasicDataSource();
 		bds.setUrl("jdbc:oracle:thin:@127.0.0.1:1521:orcl");
 		bds.setDriverClassName("oracle.jdbc.driver.OracleDriver");
 		bds.setUsername("jspboardTest");
 		bds.setPassword("jspboardTest");
-		DatabasePopulatorUtils.execute(populator , bds);
-		
-		//테스트 대상
+		DatabasePopulatorUtils.execute(populator, bds);
+
+		// 테스트 대상
 		sqlSession = SqlMapSessionFactoryTest.getSqlSessionFactory().openSession();
 	}
-	
+
 	@After
 	public void tearDown() {
 		sqlSession.rollback();

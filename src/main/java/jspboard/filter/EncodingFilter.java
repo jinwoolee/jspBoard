@@ -19,13 +19,13 @@ import org.slf4j.LoggerFactory;
 public class EncodingFilter implements Filter {
 
 	private Logger logger = LoggerFactory.getLogger(EncodingFilter.class);
-	
-    /**
-     * Default constructor. 
-     */
-    public EncodingFilter() {
-        // TODO Auto-generated constructor stub
-    }
+
+	/**
+	 * Default constructor.
+	 */
+	public EncodingFilter() {
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see Filter#destroy()
@@ -37,9 +37,10 @@ public class EncodingFilter implements Filter {
 	/**
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+			throws IOException, ServletException {
 		logger.debug("{}", "encodingFilter doFilter");
-		
+
 		request.setCharacterEncoding("utf-8");
 		chain.doFilter(request, response);
 	}

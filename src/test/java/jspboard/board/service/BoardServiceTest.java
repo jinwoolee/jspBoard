@@ -16,56 +16,56 @@ import jspboard.board.service.BoardServiceImpl;
 import jspboard.test.InitDbUtil;
 
 @SuppressWarnings("unchecked")
-public class BoardServiceTest extends InitDbUtil{
-	private	Logger logger = LoggerFactory.getLogger(BoardServiceTest.class);
-	private	BoardService boardService;
-	
+public class BoardServiceTest extends InitDbUtil {
+	private Logger logger = LoggerFactory.getLogger(BoardServiceTest.class);
+	private BoardService boardService;
+
 	@Before
 	public void setUp() {
 		boardService = new BoardServiceImpl();
 	}
-	
-	//게시물 페이징 조회 테스트 (총 게시물 14건, 페이지 1)
+
+	// 게시물 페이징 조회 테스트 (총 게시물 14건, 페이지 1)
 	@Test
 	public void getBoardPagingListPage1Test() {
-		/***Given***/
-		//1번 게시판의 1페이지, 페이지 사이즈 10
+		/*** Given ***/
+		// 1번 게시판의 1페이지, 페이지 사이즈 10
 		BoardVo boardVo = new BoardVo(1, 1, 10);
 
-		/***When***/
-		//게시판 리스트
+		/*** When ***/
+		// 게시판 리스트
 		Map<String, Object> resultMap = boardService.getBoardPagingList(boardVo);
-		List<BoardVo> boardList = (List<BoardVo>)resultMap.get("boardList");
-		
-		//게시물 총 건수
-		Integer boardTotalCnt = (Integer)resultMap.get("boardTotalCnt");
+		List<BoardVo> boardList = (List<BoardVo>) resultMap.get("boardList");
+
+		// 게시물 총 건수
+		Integer boardTotalCnt = (Integer) resultMap.get("boardTotalCnt");
 		logger.debug("totalCnt : {}", boardTotalCnt);
-		
-		/***Then***/
+
+		/*** Then ***/
 		assertEquals(10, boardList.size());
-		assertEquals(new Integer(13), boardList.get(9).getBoardNo());	//테스트 데이터 조회한 게시판 계층 쿼리의 마지막 게시물은 13번
-		
-		assertEquals(14, boardTotalCnt.intValue());						//총 게시물은 14건		
+		assertEquals(new Integer(13), boardList.get(9).getBoardNo()); // 테스트 데이터 조회한 게시판 계층 쿼리의 마지막 게시물은 13번
+
+		assertEquals(14, boardTotalCnt.intValue()); // 총 게시물은 14건
 	}
-	
-	//게시글 삭제
+
+	// 게시글 삭제
 	@Test
 	public void deleteBoardTest() {
-		/***given***/
+		/*** given ***/
 		BoardVo boardVo = new BoardVo();
 		boardVo.setBoardNo(1);
-		
-		/***when***/
+
+		/*** when ***/
 		int deleteCnt = boardService.deleteBoard(boardVo);
-		
-		/***then***/
+
+		/*** then ***/
 		assertEquals(1, deleteCnt);
 	}
-	
-	//게시글 입력
+
+	// 게시글 입력
 	@Test
 	public void insertBoardTest() {
-		/***given***/
+		/*** given ***/
 		BoardVo boardVo = new BoardVo();
 		boardVo.setBoardNo(15);
 		boardVo.setPboardNo(0);
@@ -76,11 +76,11 @@ public class BoardServiceTest extends InitDbUtil{
 		boardVo.setOrd(0);
 		boardVo.setReadCnt(0);
 		boardVo.setRegId("brown");
-		
-		/***when***/
+
+		/*** when ***/
 		int insertCnt = boardService.insertBoard(boardVo);
 
-		/***then***/
+		/*** then ***/
 		assertEquals(1, insertCnt);
 	}
 }

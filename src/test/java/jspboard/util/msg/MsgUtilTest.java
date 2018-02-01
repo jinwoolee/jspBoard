@@ -13,33 +13,34 @@ import org.slf4j.LoggerFactory;
 
 import jspboard.util.msg.PropertyUtil;
 
-public class MsgUtilTest{
+public class MsgUtilTest {
 	private Logger logger = LoggerFactory.getLogger(MsgUtilTest.class);
 
-	//msg 프로퍼티 생성 테스트
+	// msg 프로퍼티 생성 테스트
 	@Test
 	public void propertyGenerateTest() throws IOException {
-		/***Given***/
+		/*** Given ***/
 
-		/***When***/
+		/*** When ***/
 		PropertyUtil.msgPropertyGenerate();
 
-		/***Then***/
-//		InputStream is = getClass().getResourceAsStream("/jspBoard/msg/msg_KO_KR.properties");
-//		Properties properties = new Properties();
-//		properties.load(is);
-		
+		/*** Then ***/
+		// InputStream is =
+		// getClass().getResourceAsStream("/jspBoard/msg/msg_KO_KR.properties");
+		// Properties properties = new Properties();
+		// properties.load(is);
+
 		String path = getClass().getResource("/jspBoard/msg/").getPath();
-		if(path.startsWith("file:/"))
+		if (path.startsWith("file:/"))
 			path = path.substring(path.indexOf("file:/") + "file:/".length());
 		logger.debug("{}", path);
-		
+
 		File f = new File(path + "msg_KO_KR.properties");
 		FileInputStream fis = new FileInputStream(f);
-				 
+
 		Properties properties = new Properties();
 		properties.load(fis);
-		
+
 		String msg = properties.getProperty("MSG001");
 		assertEquals("안녕하세요", msg);
 	}

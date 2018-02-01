@@ -20,41 +20,42 @@ import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
 
 import jspboard.board.model.BoardVo;
+import jspboard.test.InitDbUtil;
 
-public class FormBoardListServletTest {
-  private Logger logger = LoggerFactory.getLogger(FormBoardListServletTest.class);
+public class FormBoardListServletTest extends InitDbUtil{
+	private Logger logger = LoggerFactory.getLogger(FormBoardListServletTest.class);
 
-	//mocking test fail ㅠ_ㅠ
-	public void doGetTest() throws Exception{
-		/***Given***/
-		HttpServletRequest	request		=	mock(HttpServletRequest.class);
-		HttpServletResponse	response	=	mock(HttpServletResponse.class);
-		
+	// mocking test fail ㅠ_ㅠ
+	public void doGetTest() throws Exception {
+		/*** Given ***/
+		HttpServletRequest request = mock(HttpServletRequest.class);
+		HttpServletResponse response = mock(HttpServletResponse.class);
+
 		StringWriter stringWriter = new StringWriter();
 		PrintWriter printWriter = new PrintWriter(stringWriter);
 		when(response.getWriter()).thenReturn(printWriter);
-		
-		/***When***/
+
+		/*** When ***/
 		new FormBoardListServlet().doGet(request, response);
-		
-		/***Then***/
+
+		/*** Then ***/
 		logger.debug("{}", stringWriter.getBuffer().toString());
 	}
 
-	  @Test
-	  public void doGetSpringTest() throws ServletException, IOException {
-	    /***Given***/
-      HttpServletRequest request = new MockHttpServletRequest();
-      HttpServletResponse response = new MockHttpServletResponse();
-      
-      /***When***/
-      new FormBoardListServlet().doGet(request, response);
+	@Test
+	public void doGetSpringTest() throws ServletException, IOException {
+		/*** Given ***/
+		HttpServletRequest request = new MockHttpServletRequest();
+		HttpServletResponse response = new MockHttpServletResponse();
 
-      /***Then***/
-      List<BoardVo> boardList = (List<BoardVo>)request.getAttribute("boardList");
-      int boardTotalCnt = (Integer)request.getAttribute("boardTotalCnt");
-      
-      assertEquals(10, boardList.size());
-      assertEquals(14, boardTotalCnt);
-	  }
+		/*** When ***/
+		new FormBoardListServlet().doGet(request, response);
+
+		/*** Then ***/
+		List<BoardVo> boardList = (List<BoardVo>) request.getAttribute("boardList");
+		int boardTotalCnt = (Integer) request.getAttribute("boardTotalCnt");
+
+		assertEquals(10, boardList.size());
+		assertEquals(14, boardTotalCnt);
+	}
 }

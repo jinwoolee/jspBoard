@@ -8,18 +8,18 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 public class SqlMapSessionFactory {
-	private	static SqlSessionFactory sqlSessionFactory;
-	
+	private static SqlSessionFactory sqlSessionFactory;
+
 	static {
 		String resource = "jspboard/mybatis/mybatis-config.xml";
 		try {
-			Reader reader = 	Resources.getResourceAsReader(resource);
+			Reader reader = Resources.getResourceAsReader(resource);
 			sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static SqlSessionFactory getSqlSessionFactory() {
 		return sqlSessionFactory;
 	}

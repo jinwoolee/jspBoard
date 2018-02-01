@@ -25,35 +25,38 @@ public class FormBoardListServlet extends HttpServlet {
 		super();
 	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		//게시판 분류 확인
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		// 게시판 분류 확인
 		String categoryNoParam = request.getParameter("categoryNo");
-		Integer categoryNo = (categoryNoParam == null || categoryNoParam.equals("") ) ?
-							1 : Integer.parseInt(categoryNoParam);
-		
-		//게시판 페이지
+		Integer categoryNo = (categoryNoParam == null || categoryNoParam.equals("")) ? 1
+				: Integer.parseInt(categoryNoParam);
+
+		// 게시판 페이지
 		String pageStr = request.getParameter("page");
 		Integer page = pageStr == null ? 1 : Integer.parseInt(pageStr);
-		
+
 		BoardVo boardVo = new BoardVo(categoryNo, page, 10);
-	
+
 		BoardService boardService = new BoardServiceImpl();
-		
+
 		Map<String, Object> resultMap = boardService.getBoardPagingList(boardVo);
 		request.setAttribute("boardList", resultMap.get("boardList"));
 		request.setAttribute("boardTotalCnt", resultMap.get("boardTotalCnt"));
-		
-		//게시판 페이징 처리
-		
+
+		// 게시판 페이징 처리
+
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/board/formBoardList.jsp");
 		rd.forward(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
