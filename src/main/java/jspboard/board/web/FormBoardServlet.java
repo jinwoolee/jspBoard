@@ -1,18 +1,22 @@
 package jspboard.board.web;
 
 import java.io.IOException;
+import java.util.Collection;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 import jspboard.board.model.BoardVo;
 import jspboard.board.service.BoardService;
 import jspboard.board.service.BoardServiceImpl;
 
+@MultipartConfig(maxFileSize=10*1024*1024, maxRequestSize=100*1024*1024)
 @WebServlet("/formBoard")
 public class FormBoardServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -43,6 +47,13 @@ public class FormBoardServlet extends HttpServlet {
 		String title	=	request.getParameter("title");
 		String content	=	request.getParameter("content");
 		String regId	=	"brown";
+		
+		//parts
+		Collection<Part> parts = request.getParts();
+		
+		for(Part part : parts) {
+		  
+		}
 		
 		BoardVo boardVo = new BoardVo();
 		boardVo.setPboardNo(pBboardNo);

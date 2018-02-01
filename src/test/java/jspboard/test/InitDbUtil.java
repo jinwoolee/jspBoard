@@ -17,7 +17,7 @@ public class InitDbUtil {
 	public void setup() {
 		//db 초기화
 		ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
-		populator.addScript(new ClassPathResource("jspBoard/dbinit/jspBoardInit.sql" ));
+		populator.addScript(new ClassPathResource("jspboard/dbinit/jspBoardInit.sql" ));
 		populator.setContinueOnError(false);
 		
 		BasicDataSource bds = new BasicDataSource();

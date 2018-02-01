@@ -3,10 +3,10 @@
 
 
 --15 : 입력 테스트 데이터
-delete boardfile where boardno between 1 and 15;
-delete board where boardno between 1 and 15;
-delete boardCategory where categoryNo in (1,2,3);
-delete member where userid in ('brown', 'sally', 'cony', 'moon');
+delete boardfile;-- where boardno between 1 and 15;
+delete board;-- where boardno between 1 and 15;
+delete boardCategory;-- where categoryNo in (1,2,3);
+delete member;-- where userid in ('brown', 'sally', 'cony', 'moon');
 
 delete msg;
 
@@ -43,7 +43,7 @@ insert into boardfile (fileno, boardno, filenm, filepath, filetype, filesize) va
 
 
 --테스트 입력시 생성된 데이터 삭제
-delete boardCategory where categoryNo in (5);	--boarcCategory 입력테스트
+--delete boardCategory where categoryNo in (5);	--boarcCategory 입력테스트
 
 
 --sequence

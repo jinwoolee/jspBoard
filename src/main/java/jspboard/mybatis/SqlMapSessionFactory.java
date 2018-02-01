@@ -11,7 +11,7 @@ public class SqlMapSessionFactory {
 	private	static SqlSessionFactory sqlSessionFactory;
 	
 	static {
-		String resource = "jspBoard/mybatis/mybatis-config.xml";
+		String resource = "jspboard/mybatis/mybatis-config.xml";
 		try {
 			Reader reader = 	Resources.getResourceAsReader(resource);
 			sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);

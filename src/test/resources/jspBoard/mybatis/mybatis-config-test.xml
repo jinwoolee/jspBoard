@@ -2,11 +2,11 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	
-	<properties resource="jspBoard/mybatis/testDb.properties" />
+	<properties resource="jspboard/mybatis/testDb.properties" />
 
 	<typeAliases>
-		<typeAlias alias="boardCategoryVo" type="jspBoard.boardCategory.model.BoardCategoryVo" />		
-		<typeAlias alias="boardVo" type="jspBoard.board.model.BoardVo" />
+		<typeAlias alias="boardCategoryVo" type="jspboard.boardCategory.model.BoardCategoryVo" />		
+		<typeAlias alias="boardVo" type="jspboard.board.model.BoardVo" />
 	</typeAliases>
 	
     <environments default="development">
@@ -29,8 +29,8 @@
 	
 	
 	<mappers>
-		<mapper resource="jspBoard/boardCategory/dao/boardCategory.xml" />
-		<mapper resource="jspBoard/board/dao/board.xml" />
+		<mapper resource="jspboard/boardCategory/dao/boardCategory.xml" />
+		<mapper resource="jspboard/board/dao/board.xml" />
 	</mappers>
 	
 </configuration>
