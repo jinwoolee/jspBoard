@@ -112,12 +112,13 @@ ALTER TABLE board
 
 /* 게시판 첨부파일 */
 CREATE TABLE boardFile (
-	fileNo NUMBER NOT NULL, /* 첨부파일번호 */
-	boardNo NUMBER, /* 게시글 번호 */
-	fileNm VARCHAR2(200) NOT NULL, /* 파일명 */
-	filePath VARCHAR2(200) NOT NULL, /* 파일경로 */
-	fileType VARCHAR2(100) NOT NULL, /* 파일유형 */
-	fileSize INTEGER DEFAULT 0 NOT NULL /* 파일사이즈 */
+    fileNo NUMBER NOT NULL, /* 첨부파일번호 */
+    boardNo NUMBER, /* 게시글 번호 */
+    fileOrgNm VARCHAR2(200), /* 원본파일명 */
+    fileNm VARCHAR2(200) NOT NULL, /* 파일명 */
+    filePath VARCHAR2(200) NOT NULL, /* 파일경로 */
+    fileType VARCHAR2(100) NOT NULL, /* 파일유형 */
+    fileSize INTEGER DEFAULT 0 NOT NULL /* 파일사이즈 */
 );
 
 COMMENT ON TABLE boardFile IS '게시판 첨부파일';
@@ -125,6 +126,8 @@ COMMENT ON TABLE boardFile IS '게시판 첨부파일';
 COMMENT ON COLUMN boardFile.fileNo IS '첨부파일번호';
 
 COMMENT ON COLUMN boardFile.boardNo IS '게시글 번호';
+
+COMMENT ON COLUMN boardFile.fileOrgNm IS '원본파일명';
 
 COMMENT ON COLUMN boardFile.fileNm IS '파일명';
 
@@ -135,16 +138,26 @@ COMMENT ON COLUMN boardFile.fileType IS '파일유형';
 COMMENT ON COLUMN boardFile.fileSize IS '파일사이즈';
 
 CREATE UNIQUE INDEX PK_boardFile
-	ON boardFile (
-		fileNo ASC
-	);
+    ON boardFile (
+        fileNo ASC
+    );
 
 ALTER TABLE boardFile
-	ADD
-		CONSTRAINT PK_boardFile
-		PRIMARY KEY (
-			fileNo
-		);
+    ADD
+        CONSTRAINT PK_boardFile
+        PRIMARY KEY (
+            fileNo
+        );
+
+ALTER TABLE boardFile
+    ADD
+        CONSTRAINT FK_board_TO_boardFile
+        FOREIGN KEY (
+            boardNo
+        )
+        REFERENCES board (
+            boardNo
+        );
 
 /* 게시판 댓글 */
 CREATE TABLE boardRep (

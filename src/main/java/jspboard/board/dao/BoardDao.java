@@ -33,7 +33,7 @@ public class BoardDao implements IBoardDao {
 	 */
 	@Override
 	public List<BoardVo> getBoardPagingList(SqlSession sqlSession, BoardVo boardVo) {
-		return sqlSession.selectList("jspBoard.board.dao.getBoardPagingList", boardVo);
+		return sqlSession.selectList("jspboard.board.dao.getBoardPagingList", boardVo);
 	}
 
 	/**
@@ -48,7 +48,7 @@ public class BoardDao implements IBoardDao {
 	 */
 	@Override
 	public Integer getBoardTotalCnt(SqlSession sqlSession, BoardVo boardVo) {
-		return sqlSession.selectOne("jspBoard.board.dao.getBoardTotalCnt", boardVo);
+		return sqlSession.selectOne("jspboard.board.dao.getBoardTotalCnt", boardVo);
 	}
 
 	/**
@@ -60,7 +60,7 @@ public class BoardDao implements IBoardDao {
 	 */
 	@Override
 	public BoardVo getBoardDetail(SqlSession sqlSession, BoardVo boardVo) {
-		return sqlSession.selectOne("jspBoard.board.dao.getBoardDetail", boardVo);
+		return sqlSession.selectOne("jspboard.board.dao.getBoardDetail", boardVo);
 	}
 
 	/**
@@ -72,7 +72,7 @@ public class BoardDao implements IBoardDao {
 	 */
 	@Override
 	public int modifyBoard(SqlSession sqlSession, BoardVo boardVo) {
-		return sqlSession.update("jspBoard.board.dao.modifyBoard", boardVo);
+		return sqlSession.update("jspboard.board.dao.modifyBoard", boardVo);
 	}
 
 	/**
@@ -88,7 +88,7 @@ public class BoardDao implements IBoardDao {
 	 */
 	@Override
 	public int deleteBoard(SqlSession sqlSession, BoardVo boardVo) {
-		return sqlSession.delete("jspBoard.board.dao.deleteBoard", boardVo);
+		return sqlSession.delete("jspboard.board.dao.deleteBoard", boardVo);
 	}
 
 	/**
@@ -103,6 +103,6 @@ public class BoardDao implements IBoardDao {
 	 */
 	@Override
 	public int insertBoard(SqlSession sqlSession, BoardVo boardVo) {
-		return sqlSession.insert("jspBoard.board.dao.insertBoard", boardVo);
+		return sqlSession.insert("jspboard.board.dao.insertBoard", boardVo);
 	}
 }

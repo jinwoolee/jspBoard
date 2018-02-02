@@ -112,7 +112,7 @@ public class BoardServiceImpl implements BoardService {
 	public int insertBoard(BoardVo boardVo) {
 		SqlSession sqlSession = SqlMapSessionFactory.getSqlSessionFactory().openSession();
 
-		int insertCnt = sqlSession.insert("jspBoard.board.dao.insertBoard", boardVo);
+		int insertCnt = sqlSession.insert("jspboard.board.dao.insertBoard", boardVo);
 		sqlSession.commit();
 		sqlSession.close();
 

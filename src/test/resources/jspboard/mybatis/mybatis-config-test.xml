@@ -5,28 +5,27 @@
 	<properties resource="jspboard/mybatis/testDb.properties" />
 
 	<typeAliases>
-		<typeAlias alias="boardCategoryVo" type="jspboard.boardCategory.model.BoardCategoryVo" />		
+		<typeAlias alias="boardCategoryVo" type="jspboard.boardCategory.model.BoardCategoryVo" />
 		<typeAlias alias="boardVo" type="jspboard.board.model.BoardVo" />
+		<typeAlias alias="boardFileVo" type="jspboard.board.model.BoardFileVo" />
 	</typeAliases>
 	
     <environments default="development">
 		<environment id="development">
-			<!-- <transactionManager type="JDBC"/>			
+			<!-- <transactionManager type="JDBC"/>
 			<dataSource type="JNDI">
 				<property name="data_source" value="java:comp/env/jdbc/oracleDB"/>
 			</dataSource> -->
 		
-			<transactionManager type="JDBC" /> 
+			<transactionManager type="JDBC" />
 				<dataSource type="POOLED" >
-					<property name="driver" value="${jdbc.driver}" />
-					<property name="url" value="${jdbc.url}" />
-					<property name="username" value="${jdbc.username}" />
-					<property name="password" value="${jdbc.password}" />
+                    <property name="driver" value="${jdbc.driver}" />
+                    <property name="url" value="${jdbc.url}" />
+                    <property name="username" value="${jdbc.username}" />
+                    <property name="password" value="${jdbc.password}" />
 				</dataSource>
 		</environment>
 	</environments>
-	
-	
 	
 	<mappers>
 		<mapper resource="jspboard/boardCategory/dao/boardCategory.xml" />

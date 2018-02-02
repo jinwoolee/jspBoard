@@ -5,7 +5,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,6 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
+import jspboard.board.model.BoardFileVo;
 import jspboard.board.model.BoardVo;
 import jspboard.board.service.BoardService;
 import jspboard.board.service.BoardServiceImpl;
@@ -58,22 +62,20 @@ public class FormBoardServlet extends HttpServlet {
 		
 		String uploadPath = getServletContext().getRealPath("/uploadFolder");
 		
+		List<BoardFileVo> boardFileList = new ArrayList<BoardFileVo>();
 		for (Part part : parts) {
 			if("uploadFile".equals(part.getName())) {
-				InputStream is = part.getInputStream();
-				InputStreamReader isr = new InputStreamReader(is);
-				char[] buff = new char[512];
 				
-				File f = new File(uploadPath + File.separator + part.getName());
-				FileWriter fw = new FileWriter(f);
+				String fileOrgNm = null;
+				String fileNm = UUID.randomUUID().toString();
+				String[] contentDisposition = part.getHeader("Content-Disposition").split(";");
+				for(String str : contentDisposition)
+				  if(str.startsWith(" filename"))
+				    fileOrgNm = str.substring(str.indexOf("=")+1).replace("\"", "");
+				part.write(uploadPath + File.separator + fileOrgNm);
 				
-				while(isr.read(buff) != -1) {
-					fw.write(buff);
-				}
-				
-				fw.close();
-				isr.close();
-				is.close();
+				BoardFileVo boardFileVo = new BoardFileVo();
+				boardFileVo.setFileNm(fileNm);
 			}
 		}
 

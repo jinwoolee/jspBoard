@@ -33,7 +33,7 @@ public class BoardCategoryDao implements IBoardCategoryDao {
 	 */
 	@Override
 	public List<BoardCategoryVo> getBoardCategoryList(SqlSession sqlSession) {
-		return sqlSession.selectList("jspBoard.boardCategory.dao.getBoardCategoryList", "test");
+		return sqlSession.selectList("jspboard.boardCategory.dao.getBoardCategoryList", "test");
 	}
 
 	/**
@@ -45,7 +45,7 @@ public class BoardCategoryDao implements IBoardCategoryDao {
 	 */
 	@Override
 	public int insertCategory(SqlSession sqlSession, BoardCategoryVo boardCategoryVo) {
-		return sqlSession.insert("jspBoard.boardCategory.dao.insertCategory", boardCategoryVo);
+		return sqlSession.insert("jspboard.boardCategory.dao.insertCategory", boardCategoryVo);
 	}
 
 	/**
@@ -57,7 +57,7 @@ public class BoardCategoryDao implements IBoardCategoryDao {
 	 */
 	@Override
 	public int activeBoardCategory(SqlSession sqlSession, BoardCategoryVo boardCategoryVo) {
-		return sqlSession.update("jspBoard.boardCategory.dao.activeBoardCategory", boardCategoryVo);
+		return sqlSession.update("jspboard.boardCategory.dao.activeBoardCategory", boardCategoryVo);
 	}
 
 	/**
@@ -68,7 +68,7 @@ public class BoardCategoryDao implements IBoardCategoryDao {
 	 */
 	@Override
 	public BoardCategoryVo getBoardCategory(SqlSession sqlSession, BoardCategoryVo boardCategoryVo) {
-		return sqlSession.selectOne("jspBoard.boardCategory.dao.getBoardCategory", boardCategoryVo);
+		return sqlSession.selectOne("jspboard.boardCategory.dao.getBoardCategory", boardCategoryVo);
 	}
 
 }
