@@ -64,7 +64,7 @@ public class FormBoardServlet extends HttpServlet {
 		
 		List<BoardFileVo> boardFileList = new ArrayList<BoardFileVo>();
 		for (Part part : parts) {
-			if("uploadFile".equals(part.getName())) {
+			if("uploadFile".equals(part.getName()) && part.getSize() > 0) {
 				String fileOrgNm = null;
 				String fileNm = UUID.randomUUID().toString();
 				String[] contentDisposition = part.getHeader("Content-Disposition").split(";");

@@ -40,9 +40,10 @@ public interface BoardService {
 	 * @작성자 : jw
 	 * @변경이력 :
 	 * @param boardVo
+	 * @param boardFileList 
 	 * @프로그램 설명 :게시판 수정
 	 */
-	int modifyBoard(BoardVo boardVo);
+	int modifyBoard(BoardVo boardVo, List<BoardFileVo> boardFileList);
 
 	/**
 	 * @FileName : BoardService.java

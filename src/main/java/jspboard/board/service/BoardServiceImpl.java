@@ -87,10 +87,19 @@ public class BoardServiceImpl implements BoardService {
 	 * @프로그램 설명 : 게시글 수정
 	 */
 	@Override
-	public int modifyBoard(BoardVo boardVo) {
+	public int modifyBoard(BoardVo boardVo, List<BoardFileVo> boardFileList) {
 		SqlSession sqlSession = SqlMapSessionFactory.getSqlSessionFactory().openSession();
 		int modifyCnt = boardDao.modifyBoard(sqlSession, boardVo);
+		
+		if(boardFileList != null) {
+	  		for(BoardFileVo boardFileVo : boardFileList) {
+	  			boardFileVo.setBoardNo(boardVo.getBoardNo());
+	  			boardFileDao.insertBoardFile(sqlSession, boardFileVo);
+	  		}
+		}
+		
 		sqlSession.commit();
+		sqlSession.close();
 		
 		return modifyCnt;
 	}
@@ -111,6 +120,7 @@ public class BoardServiceImpl implements BoardService {
 		int deleteCnt = boardDao.deleteBoard(sqlSession, boardVo);
 		boardFileDao.deleteBoardFile(sqlSession, boardVo.getBoardNo());
 		sqlSession.commit();
+		sqlSession.close();
 
 		return deleteCnt;
 	}
@@ -132,10 +142,10 @@ public class BoardServiceImpl implements BoardService {
 		int insertCnt = sqlSession.insert("jspboard.board.dao.insertBoard", boardVo);
 		
 		if(boardFileList != null) {
-  		for(BoardFileVo boardFileVo : boardFileList) {
-  			boardFileVo.setBoardNo(boardVo.getBoardNo());
-  			boardFileDao.insertBoardFile(sqlSession, boardFileVo);
-  		}
+	  		for(BoardFileVo boardFileVo : boardFileList) {
+	  			boardFileVo.setBoardNo(boardVo.getBoardNo());
+	  			boardFileDao.insertBoardFile(sqlSession, boardFileVo);
+	  		}
 		}
 		
 		sqlSession.commit();

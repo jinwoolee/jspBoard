@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html >
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>게시글 입력</title>
+
 <%@ include file="/WEB-INF/views/common/customCss.jsp"%>
 <%@ include file="/WEB-INF/views/common/jquery.jsp"%>
 <script src="/SE2/js/HuskyEZCreator.js"></script>
@@ -11,15 +12,20 @@
 var oEditors = [];
 
 $(function(){
+	initAttr();
 	initEvent();
 	seSetting();
 });
 
+function initAttr(){
+	$("input[name=title]").focus();
+}
+
 function initEvent(){
+	
 	//저장버튼 핸들러
 	$("#save").on("click", function(){
 		if(confirm("저장하시겠습니까?")) {
-			// id가 smarteditor인 textarea에 에디터에서 대입
 			oEditors.getById["content"].exec("UPDATE_CONTENTS_FIELD", []);
 
 			// 이부분에 에디터 validation 검증
@@ -71,7 +77,7 @@ function seSetting(){
 </head>
 <body>
 <form id="frm" method="post" action="/formBoard" enctype="multipart/form-data">
-제목 : <input type="text" name="title"/> <br>
+제목 : <input type="text" name="title" /> <br>
 내용 : <textarea id="content" name="content" rows="10" cols="100" style="width:766px; height:352px;"></textarea> <br>
 	<button id="save" type="button">저장</button>
 	<button id="cancel">취소</button>
