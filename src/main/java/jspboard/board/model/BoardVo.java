@@ -1,6 +1,7 @@
 package jspboard.board.model;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * 게시물 vo BoardVo.java
@@ -36,6 +37,8 @@ public class BoardVo {
 
 	private Integer page; // 페이지
 	private Integer pageSize; // 페이지 사이즈
+	
+	private List<BoardFileVo> boardFileList; //게시물 첨부파일
 
 	public BoardVo(int categoryNo, int page, int pageSize) {
 		this.categoryNo = categoryNo;
@@ -159,11 +162,20 @@ public class BoardVo {
 		this.pageSize = pageSize;
 	}
 
-	@Override
-	public String toString() {
-		return "BoardVo [boardNo=" + boardNo + ", pboardNo=" + pboardNo + ", categoryNo=" + categoryNo + ", title="
-				+ title + ", content=" + content + ", ord=" + ord + ", delYn=" + delYn + ", readCnt=" + readCnt
-				+ ", regId=" + regId + ", regDt=" + regDt + "]";
-	}
+	public List<BoardFileVo> getBoardFileList() {
+    return boardFileList;
+  }
 
+  public void setBoardFileList(List<BoardFileVo> boardFileList) {
+    this.boardFileList = boardFileList;
+  }
+
+  @Override
+  public String toString() {
+    return "BoardVo [boardNo=" + boardNo + ", pboardNo=" + pboardNo + ", categoryNo=" + categoryNo
+        + ", title=" + title + ", content=" + content + ", ord=" + ord + ", delYn=" + delYn
+        + ", readCnt=" + readCnt + ", regId=" + regId + ", regDt=" + regDt + ", lv=" + lv + ", rn="
+        + rn + ", page=" + page + ", pageSize=" + pageSize + ", boardFileList=" + boardFileList
+        + "]";
+  }
 }

@@ -80,8 +80,8 @@ function seSetting(){
 		<input type="file" name="uploadFile"><br>
 	</div>
 
-	<input type="hidden" name="pBoardno" value="${pBoardno}">
-	<input type="hidden" name="categoryNo" value="${categoryNo}">
+	<input type="hidden" name="pboardNo" value="${param.pboardNo}">
+	<input type="hidden" name="categoryNo" value="${param.categoryNo}">
 	<input type="hidden" name="ord" value="0">
 </form>
 </body>

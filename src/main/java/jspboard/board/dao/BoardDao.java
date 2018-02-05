@@ -33,7 +33,13 @@ public class BoardDao implements IBoardDao {
 	 */
 	@Override
 	public List<BoardVo> getBoardPagingList(SqlSession sqlSession, BoardVo boardVo) {
-		return sqlSession.selectList("jspboard.board.dao.getBoardPagingList", boardVo);
+	  List<BoardVo> boardVoList = sqlSession.selectList("jspboard.board.dao.getBoardPagingList", boardVo);
+	  for(BoardVo vo : boardVoList) {
+	    for(int i = 1; i < vo.getLv(); i++) {
+	      vo.setTitle("&nbsp;&nbsp;&nbsp;" + vo.getTitle());
+	    }
+	  }
+		return boardVoList;
 	}
 
 	/**

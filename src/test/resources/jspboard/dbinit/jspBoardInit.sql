@@ -35,9 +35,9 @@ INSERT INTO board (boardNo, pBoardno, categoryNo, title, content, delYn, ord, re
 INSERT INTO board (boardNo, pBoardno, categoryNo, title, content, delYn, ord, readCnt, regId, regDt) VALUES (13, 7, 1, '13번은 7번글의 하위 글입니다.', '13번글 내용입니다.', 'N', 1, 0, 'sally', sysdate);
 INSERT INTO board (boardNo, pBoardno, categoryNo, title, content, delYn, ord, readCnt, regId, regDt) VALUES (14, 6, 1, '14번은 6번글의 하위 글입니다.', '14번글 내용입니다.', 'N', 1, 0, 'moon', sysdate);
 
-INSERT INTO boardfile (fileno, boardno, fileorgnm, filenm, filepath, filetype, filesize) VALUES (1, 1, 'brown.png', 'brown.png', '/uploadFolder/', 'png', 5123);
-INSERT INTO boardfile (fileno, boardno, fileorgnm, filenm, filepath, filetype, filesize) VALUES (2, 1, 'sally.png', 'sally.png', '/uploadFolder/', 'png', 5123);
-INSERT INTO boardfile (fileno, boardno, fileorgnm, filenm, filepath, filetype, filesize) VALUES (3, 1, 'cony.png', 'cony.png', '/uploadFolder/', 'png', 5123);
+INSERT INTO boardfile (fileno, boardno, fileorgnm, filenm, filepath, filetype, filesize) VALUES (1, 1, 'brown.png', 'brown.png', '/uploadFolder/', 'image/png', 5123);
+INSERT INTO boardfile (fileno, boardno, fileorgnm, filenm, filepath, filetype, filesize) VALUES (2, 1, 'sally.png', 'sally.png', '/uploadFolder/', 'image/png', 5123);
+INSERT INTO boardfile (fileno, boardno, fileorgnm, filenm, filepath, filetype, filesize) VALUES (3, 1, 'cony.png', 'cony.png', '/uploadFolder/', 'image/png', 5123);
 
 --------------------------------초기 데이터 생성 END-------------------------------------------
 

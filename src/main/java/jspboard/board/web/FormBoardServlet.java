@@ -45,7 +45,7 @@ public class FormBoardServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// 게시글 파라미터
-		String pBoardNoStr = request.getParameter("pBboardNo");
+		String pBoardNoStr = request.getParameter("pboardNo");
 		int pBboardNo = (pBoardNoStr == null || pBoardNoStr.equals("")) ? 0 : Integer.parseInt(pBoardNoStr);
 
 		String categoryNoStr = request.getParameter("categoryNo");
@@ -71,12 +71,12 @@ public class FormBoardServlet extends HttpServlet {
 				for(String str : contentDisposition)
 				  if(str.startsWith(" filename"))
 				    fileOrgNm = str.substring(str.indexOf("=")+1).replace("\"", "");
-				part.write(uploadPath + fileOrgNm);
+				part.write(uploadPath + fileNm);
 				
 				BoardFileVo boardFileVo = new BoardFileVo();
 				boardFileVo.setFileNm(fileNm);
 				boardFileVo.setFileOrgNm(fileOrgNm);
-				boardFileVo.setFilePath(uploadPath);
+				boardFileVo.setFilePath("/uploadFolder" + File.separator);
 				boardFileVo.setFileType(part.getContentType());
 				boardFileVo.setFileSize(part.getSize());
 				boardFileList.add(boardFileVo);

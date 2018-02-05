@@ -13,10 +13,22 @@ public interface IBoardFileDao {
 	 * 
 	 * @param sqlSession
 	 * @param boardNo
-	 * @return Method 설명 : 게시물 첨부파일 조회
+	 * @return Method 설명 : 게시물 첨부파일 조회(리스트)
 	 */
 	List<BoardFileVo> getBoardFileList(SqlSession sqlSession, int boardNo);
 
+	/** 
+	 * Method   : getBoardFile
+	 * 최초작성일  : 2018. 2. 5. 
+	 * 작성자 : jw
+	 * 변경이력 : 
+	 * @param sqlSession
+	 * @param fileNo
+	 * @return 
+	 * Method 설명 : 게시물 첨부파일 조회
+	 */
+	BoardFileVo getBoardFile(SqlSession sqlSession, int fileNo);
+	
 	/**
 	 * Method : insertBoardFile 최초작성일 : 2018. 2. 2. 작성자 : jw 변경이력 :
 	 * 

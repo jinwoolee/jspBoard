@@ -31,6 +31,19 @@ public class BoardFileDaoTest extends InitDbUtil {
 		/*** Then ***/
 		assertEquals(3, boardFileList.size());
 	}
+	
+	//게시물 첨부파일 조회
+	@Test
+	public void getBoardFile() {
+	  /***Given***/
+	  int fileNo = 1;
+
+    /***When***/
+	  BoardFileVo boardFileVo = boardFileDao.getBoardFile(sqlSession, fileNo);
+
+    /***Then***/
+	  assertEquals(fileNo, boardFileVo.getBoardNo());
+	}
 
 	// 게시물 첨부파일 입력
 	@Test
@@ -62,6 +75,6 @@ public class BoardFileDaoTest extends InitDbUtil {
 		int deleteCnt = boardFileDao.deleteBoardFile(sqlSession, boardFileVo.getFileNo());
 
 		/*** then ***/
-		assertEquals(3, deleteCnt);
+		assertEquals(1, deleteCnt);
 	}
 }

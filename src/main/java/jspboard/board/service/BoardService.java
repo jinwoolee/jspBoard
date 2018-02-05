@@ -42,7 +42,7 @@ public interface BoardService {
 	 * @param boardVo
 	 * @프로그램 설명 :게시판 수정
 	 */
-	void modifyBoard(BoardVo boardVo);
+	int modifyBoard(BoardVo boardVo);
 
 	/**
 	 * @FileName : BoardService.java
@@ -80,5 +80,16 @@ public interface BoardService {
 	  * @프로그램 설명 : 게시글 첨부파일 삭제 
 	  */
 	int deleteBoardFile(int fileNo);
+
+  /** 
+   * Method   : getBoardFile
+   * 최초작성일  : 2018. 2. 5. 
+   * 작성자 : jw
+   * 변경이력 : 
+   * @param fileNo
+   * @return 
+   * Method 설명 : 게시글 첨부파일 조회
+   */
+  BoardFileVo getBoardFile(int fileNo);
 
 }

@@ -4,7 +4,7 @@
 
 <!-- 게시판 카테고리 리스트 -->
 <select id="getBoardPagingList" resultType="boardVo" parameterType="boardVo" >
-	SELECT a.*
+	SELECT a.* --lpad(' ', (lv-1)*4, ' ') || a.title as title
 	 FROM 
 	    (SELECT a.*, ROWNUM rn
 	       FROM 
@@ -49,11 +49,18 @@
 	VALUES (#{boardNo}, #{pboardNo}, #{categoryNo}, #{title}, #{content}, #{delYn}, #{ord}, #{readCnt}, #{regId}, sysdate)
 </insert>
 
-<!-- 게시물 첨부파일 조회 -->
+<!-- 게시물 첨부파일 리스트 조회 -->
 <select id="getBoardFileList" parameterType="integer" resultType="boardFileVo">
     SELECT *
       FROM boardFile
      WHERE boardNo = #{boardNo}
+</select>
+
+<!-- 게시물 첨부파일 조회 -->
+<select id="getBoardFile" parameterType="integer" resultType="boardFileVo">
+    SELECT *
+      FROM boardFile
+     WHERE fileNo = #{fileNo}
 </select>
 
 <!-- 게시물 첨부파일 입력 -->

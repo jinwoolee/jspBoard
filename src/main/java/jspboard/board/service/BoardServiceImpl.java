@@ -66,8 +66,14 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public BoardVo getBoardDetail(BoardVo boardVo) {
 		SqlSession sqlSession = SqlMapSessionFactory.getSqlSessionFactory().openSession();
+		
 		BoardVo vo = boardDao.getBoardDetail(sqlSession, boardVo);
+		
+		//첨부파일 조회
+		List<BoardFileVo> boardFileList = boardFileDao.getBoardFileList(sqlSession, boardVo.getBoardNo());
+		vo.setBoardFileList(boardFileList);
 		sqlSession.close();
+		
 		return vo;
 	}
 
@@ -81,10 +87,12 @@ public class BoardServiceImpl implements BoardService {
 	 * @프로그램 설명 : 게시글 수정
 	 */
 	@Override
-	public void modifyBoard(BoardVo boardVo) {
+	public int modifyBoard(BoardVo boardVo) {
 		SqlSession sqlSession = SqlMapSessionFactory.getSqlSessionFactory().openSession();
 		int modifyCnt = boardDao.modifyBoard(sqlSession, boardVo);
 		sqlSession.commit();
+		
+		return modifyCnt;
 	}
 
 	/**
@@ -99,9 +107,9 @@ public class BoardServiceImpl implements BoardService {
 	 */
 	@Override
 	public int deleteBoard(BoardVo boardVo) {
-		SqlSession sqlSession = SqlMapSessionFactory.getSqlSessionFactory().openSession();
+	  SqlSession sqlSession = SqlMapSessionFactory.getSqlSessionFactory().openSession();
 		int deleteCnt = boardDao.deleteBoard(sqlSession, boardVo);
-		deleteCnt += boardFileDao.deleteBoardFile(sqlSession, boardVo.getBoardNo());
+		boardFileDao.deleteBoardFile(sqlSession, boardVo.getBoardNo());
 		sqlSession.commit();
 
 		return deleteCnt;
@@ -123,10 +131,13 @@ public class BoardServiceImpl implements BoardService {
 
 		int insertCnt = sqlSession.insert("jspboard.board.dao.insertBoard", boardVo);
 		
-		for(BoardFileVo boardFileVo : boardFileList) {
-			boardFileVo.setBoardNo(boardVo.getBoardNo());
-			boardFileDao.insertBoardFile(sqlSession, boardFileVo);
+		if(boardFileList != null) {
+  		for(BoardFileVo boardFileVo : boardFileList) {
+  			boardFileVo.setBoardNo(boardVo.getBoardNo());
+  			boardFileDao.insertBoardFile(sqlSession, boardFileVo);
+  		}
 		}
+		
 		sqlSession.commit();
 		sqlSession.close();
 
@@ -148,7 +159,26 @@ public class BoardServiceImpl implements BoardService {
 		SqlSession sqlSession = SqlMapSessionFactory.getSqlSessionFactory().openSession();
 		int deleteCnt = boardFileDao.deleteBoardFile(sqlSession, fileNo);
 		sqlSession.commit();
+		sqlSession.close();
 		
 		return deleteCnt;
 	}
+
+  /** 
+   * Method   : getBoardFile
+   * 최초작성일  : 2018. 2. 5. 
+   * 작성자 : jw
+   * 변경이력 : 
+   * @param fileNo
+   * @return 
+   * Method 설명 : 게시글 첨부파일 조회
+   */
+  @Override
+  public BoardFileVo getBoardFile(int fileNo) {
+    SqlSession sqlSession = SqlMapSessionFactory.getSqlSessionFactory().openSession();
+    BoardFileVo boardFileVo = boardFileDao.getBoardFile(sqlSession, fileNo);
+    sqlSession.close();
+
+    return boardFileVo;
+  }
 }
