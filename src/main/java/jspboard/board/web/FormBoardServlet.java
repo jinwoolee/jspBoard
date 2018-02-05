@@ -60,22 +60,26 @@ public class FormBoardServlet extends HttpServlet {
 		// parts
 		Collection<Part> parts = request.getParts();
 		
-		String uploadPath = getServletContext().getRealPath("/uploadFolder");
+		String uploadPath = getServletContext().getRealPath("/uploadFolder") + File.separator;
 		
 		List<BoardFileVo> boardFileList = new ArrayList<BoardFileVo>();
 		for (Part part : parts) {
 			if("uploadFile".equals(part.getName())) {
-				
 				String fileOrgNm = null;
 				String fileNm = UUID.randomUUID().toString();
 				String[] contentDisposition = part.getHeader("Content-Disposition").split(";");
 				for(String str : contentDisposition)
 				  if(str.startsWith(" filename"))
 				    fileOrgNm = str.substring(str.indexOf("=")+1).replace("\"", "");
-				part.write(uploadPath + File.separator + fileOrgNm);
+				part.write(uploadPath + fileOrgNm);
 				
 				BoardFileVo boardFileVo = new BoardFileVo();
 				boardFileVo.setFileNm(fileNm);
+				boardFileVo.setFileOrgNm(fileOrgNm);
+				boardFileVo.setFilePath(uploadPath);
+				boardFileVo.setFileType(part.getContentType());
+				boardFileVo.setFileSize(part.getSize());
+				boardFileList.add(boardFileVo);
 			}
 		}
 
@@ -89,7 +93,7 @@ public class FormBoardServlet extends HttpServlet {
 		boardVo.setReadCnt(0);
 		boardVo.setRegId(regId);
 
-		boardService.insertBoard(boardVo);
+		boardService.insertBoard(boardVo, boardFileList);
 		response.sendRedirect("/formBoardList?boardNo=" + boardVo.getBoardNo());
 	}
 }

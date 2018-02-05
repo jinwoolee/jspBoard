@@ -7,13 +7,21 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 
 import jspboard.board.dao.BoardDao;
+import jspboard.board.dao.BoardFileDao;
 import jspboard.board.dao.IBoardDao;
+import jspboard.board.dao.IBoardFileDao;
+import jspboard.board.model.BoardFileVo;
 import jspboard.board.model.BoardVo;
 import jspboard.mybatis.SqlMapSessionFactory;
 
+/**
+ * @author jw
+ *
+ */
 public class BoardServiceImpl implements BoardService {
 
 	private IBoardDao boardDao = new BoardDao();
+	private IBoardFileDao boardFileDao = new BoardFileDao();
 
 	/**
 	 * @FileName : BoardServiceImpl.java
@@ -93,6 +101,7 @@ public class BoardServiceImpl implements BoardService {
 	public int deleteBoard(BoardVo boardVo) {
 		SqlSession sqlSession = SqlMapSessionFactory.getSqlSessionFactory().openSession();
 		int deleteCnt = boardDao.deleteBoard(sqlSession, boardVo);
+		deleteCnt += boardFileDao.deleteBoardFile(sqlSession, boardVo.getBoardNo());
 		sqlSession.commit();
 
 		return deleteCnt;
@@ -109,13 +118,37 @@ public class BoardServiceImpl implements BoardService {
 	 * @프로그램 설명 : 게시글 입력
 	 */
 	@Override
-	public int insertBoard(BoardVo boardVo) {
+	public int insertBoard(BoardVo boardVo, List<BoardFileVo> boardFileList) {
 		SqlSession sqlSession = SqlMapSessionFactory.getSqlSessionFactory().openSession();
 
 		int insertCnt = sqlSession.insert("jspboard.board.dao.insertBoard", boardVo);
+		
+		for(BoardFileVo boardFileVo : boardFileList) {
+			boardFileVo.setBoardNo(boardVo.getBoardNo());
+			boardFileDao.insertBoardFile(sqlSession, boardFileVo);
+		}
 		sqlSession.commit();
 		sqlSession.close();
 
 		return insertCnt;
+	}
+
+	/**
+	  * @FileName : BoardServiceImpl.java
+	  * @Project : jspBoard
+	  * @Date : 2018. 2. 5.
+	  * @작성자 : jw
+	  * @변경이력 :
+	  * @param boardNo
+	  * @return
+	  * @프로그램 설명 : 게시글 첨부파일 삭제  
+	  */
+	@Override
+	public int deleteBoardFile(int fileNo) {
+		SqlSession sqlSession = SqlMapSessionFactory.getSqlSessionFactory().openSession();
+		int deleteCnt = boardFileDao.deleteBoardFile(sqlSession, fileNo);
+		sqlSession.commit();
+		
+		return deleteCnt;
 	}
 }

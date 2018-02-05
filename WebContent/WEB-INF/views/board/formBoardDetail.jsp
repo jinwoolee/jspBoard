@@ -41,6 +41,10 @@ function initEvent(){
 제목 : ${boardVo.title } <br/>
 내용 : ${boardVo.content } <br/>
 
+<div id="boardFileList">
+	
+</div>
+
 <form id="frm">
 	<input type="hidden" name="boardNo" value="${boardVo.boardNo }">
 	<%--<input type="hidden" name="page" value=${page }>

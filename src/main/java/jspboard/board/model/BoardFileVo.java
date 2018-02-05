@@ -7,7 +7,7 @@ public class BoardFileVo {
   private String  fileOrgNm;   //원본파일명
   private String  filePath; //파일경로
   private String  fileType; //파일타입
-  private int     fileSize; //파일 사이즈
+  private long    fileSize; //파일 사이즈
   
   public BoardFileVo() {
   }
@@ -60,11 +60,11 @@ public class BoardFileVo {
     this.fileType = fileType;
   }
 
-  public int getFileSize() {
+  public long getFileSize() {
     return fileSize;
   }
 
-  public void setFileSize(int fileSize) {
+  public void setFileSize(long fileSize) {
     this.fileSize = fileSize;
   }
 

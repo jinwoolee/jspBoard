@@ -10,6 +10,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import jspboard.board.model.BoardFileVo;
 import jspboard.board.model.BoardVo;
 import jspboard.board.service.BoardService;
 import jspboard.board.service.BoardServiceImpl;
@@ -78,9 +79,23 @@ public class BoardServiceTest extends InitDbUtil {
 		boardVo.setRegId("brown");
 
 		/*** when ***/
-		int insertCnt = boardService.insertBoard(boardVo);
+		int insertCnt = boardService.insertBoard(boardVo, null);
 
 		/*** then ***/
 		assertEquals(1, insertCnt);
+	}
+	
+	//게시글 삭제
+	@Test
+	public void deleteBoardFileTest() {
+		/***given***/
+		BoardFileVo boardFileVo = new BoardFileVo();
+		boardFileVo.setFileNo(1);
+		
+		/***when***/
+		int deleteCnt = boardService.deleteBoardFile(boardFileVo.getFileNo());
+
+		/***then***/
+		assertEquals(1, deleteCnt);
 	}
 }

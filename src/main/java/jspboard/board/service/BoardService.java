@@ -1,7 +1,9 @@
 package jspboard.board.service;
 
+import java.util.List;
 import java.util.Map;
 
+import jspboard.board.model.BoardFileVo;
 import jspboard.board.model.BoardVo;
 
 public interface BoardService {
@@ -61,9 +63,22 @@ public interface BoardService {
 	 * @작성자 : jw
 	 * @변경이력 :
 	 * @param boardVo
+	 * @param boardFileList 
 	 * @return
 	 * @프로그램 설명 : 게시글 입력
 	 */
-	int insertBoard(BoardVo boardVo);
+	int insertBoard(BoardVo boardVo, List<BoardFileVo> boardFileList);
+
+	/**
+	  * @FileName : BoardService.java
+	  * @Project : jspBoard
+	  * @Date : 2018. 2. 5.
+	  * @작성자 : jw
+	  * @변경이력 :
+	  * @param boardNo
+	  * @return
+	  * @프로그램 설명 : 게시글 첨부파일 삭제 
+	  */
+	int deleteBoardFile(int fileNo);
 
 }

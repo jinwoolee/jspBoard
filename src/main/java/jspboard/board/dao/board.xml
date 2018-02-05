@@ -52,8 +52,8 @@
 <!-- 게시물 첨부파일 조회 -->
 <select id="getBoardFileList" parameterType="integer" resultType="boardFileVo">
     SELECT *
-      FROM boardfile
-     WHERE boardno = #{boardNo}
+      FROM boardFile
+     WHERE boardNo = #{boardNo}
 </select>
 
 <!-- 게시물 첨부파일 입력 -->
@@ -61,4 +61,10 @@
     INSERT INTO boardFile (fileNo, boardNo, fileOrgNm, fileNm, filePath, fileType, fileSize)
                 VALUES (seq_boardfile.nextVal, #{boardNo}, #{fileOrgNm}, #{fileNm}, #{filePath}, #{fileType}, #{fileSize})
 </insert>
+
+<!-- 게시물 첨부파일 삭제 -->
+<delete id="deleteBoardFile" parameterType="integer">
+	DELETE boardFile 
+	 WHERE fileNo = #{fileNo}
+</delete>
 </mapper>
