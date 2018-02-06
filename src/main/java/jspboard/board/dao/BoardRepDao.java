@@ -6,7 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import jspboard.board.model.BoardRepVo;
 
-public class BoardRepDao implements IboardRepDao {
+public class BoardRepDao implements IBoardRepDao {
 
   /** 
    * Method   : getBoardRepList

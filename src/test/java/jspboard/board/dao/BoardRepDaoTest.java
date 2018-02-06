@@ -12,7 +12,7 @@ import jspboard.test.InitDbUtil;
 
 public class BoardRepDaoTest extends InitDbUtil{
 
-  private IboardRepDao boardRepDao;
+  private IBoardRepDao boardRepDao;
   
   @Before
   public void boardRepDaoSetup() {

@@ -2,6 +2,8 @@ package jspboard.board.service;
 
 import org.apache.ibatis.session.SqlSession;
 
+import jspboard.board.dao.BoardRepDao;
+import jspboard.board.dao.IBoardRepDao;
 import jspboard.board.model.BoardRepVo;
 import jspboard.mybatis.SqlMapSessionFactory;
 
@@ -25,6 +27,11 @@ import jspboard.mybatis.SqlMapSessionFactory;
  */
 public class BoardRepServiceImpl implements BoardRepService {
 
+  private IBoardRepDao boardRepDao;
+  
+  public BoardRepServiceImpl() {
+    boardRepDao= new BoardRepDao();
+  }
   /** 
    * Method   : insertBoardRep
    * 최초작성일  : 2018. 2. 6. 
@@ -55,7 +62,7 @@ public class BoardRepServiceImpl implements BoardRepService {
   @Override
   public int deleteBoardRep(int repNo) {
     SqlSession sqlSession = SqlMapSessionFactory.getSqlSessionFactory().openSession();
-    int deleteCnt = sqlSession.update("jspboard.board.dao.insertBoardRep", repNo);
+    int deleteCnt = boardRepDao.delete, repNo);
     sqlSession.commit();
     sqlSession.close();
     return deleteCnt;
