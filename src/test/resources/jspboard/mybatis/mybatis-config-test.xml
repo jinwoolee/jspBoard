@@ -8,6 +8,7 @@
 		<typeAlias alias="boardCategoryVo" type="jspboard.boardCategory.model.BoardCategoryVo" />
 		<typeAlias alias="boardVo" type="jspboard.board.model.BoardVo" />
 		<typeAlias alias="boardFileVo" type="jspboard.board.model.BoardFileVo" />
+		<typeAlias alias="boardRepVo" type="jspboard.board.model.BoardRepVo" />
 	</typeAliases>
 	
     <environments default="development">

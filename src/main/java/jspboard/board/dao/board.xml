@@ -74,4 +74,32 @@
 	DELETE boardFile 
 	 WHERE fileNo = #{fileNo}
 </delete>
+
+<!-- 게시물 댓글 조회 -->
+<select id="getBoardRepList" parameterType="integer" resultType="boardRepVo">
+    SELECT *
+     FROM boardRep
+    WHERE boardNo = #{boardNo}
+</select>
+
+<!-- 게시글 입력 -->
+<insert id="insertBoardRep" parameterType="boardRepVo">
+    <selectKey keyProperty="repNo" resultType="integer" order="BEFORE">
+        SELECT SEQ_BOARD_REP.NEXTVAL FROM DUAL
+    </selectKey>
+    INSERT INTO boardRep (repno, boardno, content, delyn, regid, regdt)
+                VALUES (#{repNo}, #{boardNo}, #{content}, #{delYn}, #{regId}, sysdate)
+</insert>
+
+<!-- 게시글 삭제 -->
+<update id="deleteBoardRep" parameterType="integer">
+    UPDATE boardRep set delYn ='Y'
+    WHERE repNo = #{repNo}
+</update>
+
+<!-- 게시글 수정 -->
+<update id="modifyBoardRep" parameterType="boardRepVo">
+    UPDATE boardRep set content = #{content}
+    WHERE repNo = #{repNo}
+</update>
 </mapper>

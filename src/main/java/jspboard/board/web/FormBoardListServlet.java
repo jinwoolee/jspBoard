@@ -25,6 +25,17 @@ public class FormBoardListServlet extends HttpServlet {
 		super();
 	}
 
+	/** 
+	 * Method   : doGet
+	 * 최초작성일  : 2018. 2. 6. 
+	 * 작성자 : jw
+	 * 변경이력 : 
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException 
+	 * Method 설명 : 게시판 리스트 조회
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -50,15 +61,4 @@ public class FormBoardListServlet extends HttpServlet {
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/board/formBoardList.jsp");
 		rd.forward(request, response);
 	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
-
 }

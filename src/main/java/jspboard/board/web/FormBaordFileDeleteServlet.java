@@ -43,7 +43,7 @@ public class FormBaordFileDeleteServlet extends HttpServlet {
 		int deleteCnt = boardService.deleteBoardFile(fileNo);
 		
 		//해당 게시물 상세 페이지로 이동
-		response.sendRedirect("/formBoardDetail?boardNo=" + boardNo);
+		response.sendRedirect("/formBoardModify?boardNo=" + boardNo);
 	}
 
 }

@@ -51,11 +51,11 @@ function initEvent(){
 	
 	//파일삭제 버튼
 	$(".fileDelete").on("click", function(){
-		var fileNo = this.data("fileno");
-		$("#fileNo").val(filenNo);
-		
-		return false;
-		$("#deleteFilefrm").submit();
+		var fileNo = $(this).data("fileno");
+		var boardNo = $(this).data("boardno");
+		$("#formBaordFileDelete input[name=fileNo]").val(fileNo);
+		$("#formBaordFileDelete input[name=boardNo]").val(boardNo);
+		$("#formBaordFileDelete").submit();
 	});
 }
 
@@ -91,9 +91,9 @@ function seSetting(){
 <ul id="boardFileList">
     <c:forEach var="boardFile" items="${boardVo.boardFileList }">
         <li>
-        		<a href="/fileDownload?fileNo=${boardFile.fileNo}" target="_blank"> ${boardFile.fileOrgNm }</a>
-        		<button class="fileDelete" type="button" data-fileno="${boardFile.fileNo}">삭제</button>
-        	</li>
+            <a href="/formBaordFileDelete?fileNo=${boardFile.fileNo}" target="_blank"> ${boardFile.fileOrgNm }</a>
+            <button class="fileDelete" type="button" data-boardno="${boardVo.boardNo}" data-fileno="${boardFile.fileNo}">삭제</button>
+        </li>
     </c:forEach>
 </ul>
 
@@ -105,8 +105,9 @@ function seSetting(){
 </div>
 </form>
 
-<form id="deleteFileFrm"	 action="/deleteFile" method="post">
-	<input type="hidden" id="fileNo" name="fileNo" >
+<form id="formBaordFileDelete" action="/formBaordFileDelete" method="post">
+    <input type="hidden" name="boardNo" >
+    <input type="hidden" name="fileNo" >
 </form>
 </body>
 </html>

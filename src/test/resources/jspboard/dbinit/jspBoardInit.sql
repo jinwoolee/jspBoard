@@ -1,8 +1,7 @@
 
 --select * from notexistsBoard where rownum =1;
 
-
---15 : 입력 테스트 데이터
+DELETE boardrep;
 DELETE boardfile;-- where boardno between 1 and 15;
 DELETE board;-- where boardno between 1 and 15;
 DELETE boardCategory;-- where categoryNo in (1,2,3);
@@ -39,6 +38,9 @@ INSERT INTO boardfile (fileno, boardno, fileorgnm, filenm, filepath, filetype, f
 INSERT INTO boardfile (fileno, boardno, fileorgnm, filenm, filepath, filetype, filesize) VALUES (2, 1, 'sally.png', 'sally.png', '/uploadFolder/', 'image/png', 5123);
 INSERT INTO boardfile (fileno, boardno, fileorgnm, filenm, filepath, filetype, filesize) VALUES (3, 1, 'cony.png', 'cony.png', '/uploadFolder/', 'image/png', 5123);
 
+INSERT INTO boardrep (repNo, boardNo, content, delYn, regid, regdt) VALUES (1, 1, '첫번째 댓글입니다.', 'N', 'brown', sysdate);
+INSERT INTO boardrep (repNo, boardNo, content, delYn, regid, regdt) VALUES (2, 1, '두번째 댓글입니다.', 'N', 'brown', sysdate);
+
 --------------------------------초기 데이터 생성 END-------------------------------------------
 
 
@@ -52,3 +54,6 @@ CREATE SEQUENCE seq_board START WITH 15 INCREMENT BY 1 CACHE 20 NOCYCLE;
 
 DROP SEQUENCE seq_boardFile;
 CREATE SEQUENCE seq_boardFile START WITH 4 INCREMENT BY 1 CACHE 20 NOCYCLE;
+
+DROP SEQUENCE seq_board_rep;
+CREATE SEQUENCE seq_board_rep START WITH 3 INCREMENT BY 1 CACHE 20 NOCYCLE;
