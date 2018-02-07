@@ -37,8 +37,9 @@ public class BoardVo {
 
 	private Integer page; // 페이지
 	private Integer pageSize; // 페이지 사이즈
-	
-	private List<BoardFileVo> boardFileList; //게시물 첨부파일
+
+	private List<BoardFileVo> boardFileList; // 게시물 첨부파일리스트
+	private List<BoardRepVo> boardRepList; // 게시물 댓글 리스트
 
 	public BoardVo(int categoryNo, int page, int pageSize) {
 		this.categoryNo = categoryNo;
@@ -163,19 +164,27 @@ public class BoardVo {
 	}
 
 	public List<BoardFileVo> getBoardFileList() {
-    return boardFileList;
-  }
+		return boardFileList;
+	}
 
-  public void setBoardFileList(List<BoardFileVo> boardFileList) {
-    this.boardFileList = boardFileList;
-  }
+	public void setBoardFileList(List<BoardFileVo> boardFileList) {
+		this.boardFileList = boardFileList;
+	}
 
-  @Override
-  public String toString() {
-    return "BoardVo [boardNo=" + boardNo + ", pboardNo=" + pboardNo + ", categoryNo=" + categoryNo
-        + ", title=" + title + ", content=" + content + ", ord=" + ord + ", delYn=" + delYn
-        + ", readCnt=" + readCnt + ", regId=" + regId + ", regDt=" + regDt + ", lv=" + lv + ", rn="
-        + rn + ", page=" + page + ", pageSize=" + pageSize + ", boardFileList=" + boardFileList
-        + "]";
-  }
+	public List<BoardRepVo> getBoardRepList() {
+		return boardRepList;
+	}
+
+	public void setBoardRepList(List<BoardRepVo> boardRepList) {
+		this.boardRepList = boardRepList;
+	}
+
+	@Override
+	public String toString() {
+		return "BoardVo [boardNo=" + boardNo + ", pboardNo=" + pboardNo + ", categoryNo=" + categoryNo + ", title="
+				+ title + ", content=" + content + ", ord=" + ord + ", delYn=" + delYn + ", readCnt=" + readCnt
+				+ ", regId=" + regId + ", regDt=" + regDt + ", lv=" + lv + ", rn=" + rn + ", page=" + page
+				+ ", pageSize=" + pageSize + ", boardFileList=" + boardFileList + ", boardRepList=" + boardRepList
+				+ "]";
+	}
 }

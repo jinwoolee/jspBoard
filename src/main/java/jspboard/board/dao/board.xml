@@ -80,6 +80,7 @@
     SELECT *
      FROM boardRep
     WHERE boardNo = #{boardNo}
+    ORDER BY repNo
 </select>
 
 <!-- 게시글 입력 -->
@@ -88,7 +89,7 @@
         SELECT SEQ_BOARD_REP.NEXTVAL FROM DUAL
     </selectKey>
     INSERT INTO boardRep (repno, boardno, content, delyn, regid, regdt)
-                VALUES (#{repNo}, #{boardNo}, #{content}, #{delYn}, #{regId}, sysdate)
+                VALUES (#{repNo}, #{boardNo}, #{content}, 'N', #{regId}, sysdate)
 </insert>
 
 <!-- 게시글 삭제 -->

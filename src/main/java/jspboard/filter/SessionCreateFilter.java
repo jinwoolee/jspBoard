@@ -8,13 +8,12 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
- * 캐릭터 인코딩
- * EncodingFilter.java
+ * 임의 사용자 설정 filter 
+ * SessionCreateFilter.java
  * 
  * @author jw
  * @since 2018. 2. 7.
@@ -31,21 +30,22 @@ import org.slf4j.LoggerFactory;
  * </pre>
  */
 @WebFilter("/*")
-public class EncodingFilter implements Filter {
-
-	private Logger logger = LoggerFactory.getLogger(EncodingFilter.class);
-
-	public EncodingFilter() {
-	}
+public class SessionCreateFilter implements Filter {
+    
+	public SessionCreateFilter() {
+    }
 
 	public void destroy() {
 	}
 
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
-			throws IOException, ServletException {
-		logger.debug("{}", "encodingFilter doFilter");
-
-		request.setCharacterEncoding("utf-8");
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+		
+		//세션정보를 임의로 설정한다.
+		HttpServletRequest req = (HttpServletRequest)request;
+		HttpSession session = req.getSession();
+		if(session.getAttribute("userId") == null)
+			session.setAttribute("userId", "brown");
+		
 		chain.doFilter(request, response);
 	}
 

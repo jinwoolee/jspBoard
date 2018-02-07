@@ -84,46 +84,47 @@ public class BoardServiceTest extends InitDbUtil {
 		/*** then ***/
 		assertEquals(1, insertCnt);
 	}
-	
-	//게시글 첨부파일 삭제
+
+	// 게시글 첨부파일 삭제
 	@Test
 	public void deleteBoardFileTest() {
-		/***given***/
+		/*** given ***/
 		BoardFileVo boardFileVo = new BoardFileVo();
 		boardFileVo.setFileNo(1);
-		
-		/***when***/
+
+		/*** when ***/
 		int deleteCnt = boardService.deleteBoardFile(boardFileVo.getFileNo());
 
-		/***then***/
+		/*** then ***/
 		assertEquals(1, deleteCnt);
 	}
-	
-	//게시물 상세 조회
+
+	// 게시물 상세 조회
 	@Test
 	public void getBoardTest() {
-	  /***Given***/
-	  BoardVo boardVo = new BoardVo();
-	  boardVo.setBoardNo(1);
-	  
-    /***When***/
-	  BoardVo resultVo = boardService.getBoardDetail(boardVo);
-	  
-    /***Then***/
-	  assertEquals(1, resultVo.getBoardNo().intValue());
-	  assertEquals(3, resultVo.getBoardFileList().size());
+		/*** Given ***/
+		BoardVo boardVo = new BoardVo();
+		boardVo.setBoardNo(1);
+
+		/*** When ***/
+		BoardVo resultVo = boardService.getBoardDetail(boardVo);
+
+		/*** Then ***/
+		assertEquals(1, resultVo.getBoardNo().intValue());
+		assertEquals(3, resultVo.getBoardFileList().size());
+		assertEquals(2, resultVo.getBoardRepList().size());
 	}
-	
-	 //게시물 첨부파일 조회
-  @Test
-  public void getBoardFile() {
-    /***Given***/
-    int fileNo = 1;
 
-    /***When***/
-    BoardFileVo boardFileVo = boardService.getBoardFile(fileNo);
+	// 게시물 첨부파일 조회
+	@Test
+	public void getBoardFile() {
+		/*** Given ***/
+		int fileNo = 1;
 
-    /***Then***/
-    assertEquals(fileNo, boardFileVo.getBoardNo());
-  }
+		/*** When ***/
+		BoardFileVo boardFileVo = boardService.getBoardFile(fileNo);
+
+		/*** Then ***/
+		assertEquals(fileNo, boardFileVo.getBoardNo());
+	}
 }

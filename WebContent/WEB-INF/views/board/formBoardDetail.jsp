@@ -41,6 +41,41 @@ function initEvent(){
 	    $("#frm").attr("method", "post");
 	    $("#frm").submit();
 	});
+	
+	//게시물 댓글 입력버튼 클릭 이벤트 핸들러
+	$("#boardRepReg").on("click", function(){
+		//validate 추가 
+		
+		$("#boardRepFrm").attr("method", "post");
+		$("#boardRepFrm").attr("action", "/formBoardRep");
+		$("#boardRepFrm").submit();
+	});
+	
+	//게시물 댓글 수정버튼 클릭 이벤트 핸들러
+	$(".boardRepMod").on("click", function(){
+		var boardNo = $(this).data("boardno");
+		var repNo = $(this).data("repno");
+		var content = $(this).parent().find("textarea").val();
+		
+		$("#boardRepModify input[name=boardNo]").val(boardNo);
+		$("#boardRepModify input[name=repNo]").val(repNo);
+		$("#boardRepModify input[name=content]").val(content);
+		
+		$("#boardRepModify").attr("action", "/formBoardRepModify");
+		$("#boardRepModify").submit();
+	});
+	
+	//게시물 댓글 삭제버튼 클릭 이벤트 핸들러
+	$(".boardRepDel").on("click", function(){
+		var boardNo = $(this).data("boardno");
+		var repNo = $(this).data("repno");
+		
+		$("#boardRepModify input[name=boardNo]").val(boardNo);
+		$("#boardRepModify input[name=repNo]").val(repNo);
+		
+		$("#boardRepModify").attr("action", "/formBoardRepDelete");
+		$("#boardRepModify").submit();
+	});
 }
 </script>
 </head>
@@ -55,6 +90,35 @@ function initEvent(){
         <li><a href="/fileDownload?fileNo=${boardFile.fileNo}" target="_blank"> ${boardFile.fileOrgNm }</a></li>
     </c:forEach>
 </ul>
+
+<form id="boardRepModify" method="post" action="/formBoardModify">
+<input type="hidden" name="boardNo">
+<input type="hidden" name="repNo">
+<input type="hidden" name="conetnt">
+</form>
+
+<ul id="boardRepList">
+    <c:forEach var="boardRep" items="${boardVo.boardRepList }">
+        <li><c:choose>
+        			<c:when test="${boardRep.regId == userId}">
+        				${boardRep.regId} : <textarea name="content">${boardRep.content}</textarea>
+        				<button type="button" class="boardRepMod" data-boardno="${board.boardNo}" data-repno="${boardRep.repNo}">수정</button>
+        				<button type="button" class="boardRepDel" data-boardno="${board.boardNo}" data-repno="${boardRep.repNo}">삭제</button>
+        			</c:when>
+        			<c:otherwise>
+        				${boardRep.regId} : ${boardRep.content}
+        			</c:otherwise>
+        		</c:choose>
+        	</li>
+    </c:forEach>
+    <form id="boardRepFrm" method="post" action="/formBoardRep">
+    		<input type="hidden" name="boardNo" value="${boardVo.boardNo }">
+	    	<textarea name="content"></textarea>
+	    	<button id="boardRepReg" type="button">댓글입력</button>
+    	</form>
+</ul>
+
+
 
 <form id="frm">
 	<input type="hidden" name="boardNo" value="${boardVo.boardNo }">

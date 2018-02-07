@@ -8,9 +8,12 @@ import org.apache.ibatis.session.SqlSession;
 
 import jspboard.board.dao.BoardDao;
 import jspboard.board.dao.BoardFileDao;
+import jspboard.board.dao.BoardRepDao;
 import jspboard.board.dao.IBoardDao;
 import jspboard.board.dao.IBoardFileDao;
+import jspboard.board.dao.IBoardRepDao;
 import jspboard.board.model.BoardFileVo;
+import jspboard.board.model.BoardRepVo;
 import jspboard.board.model.BoardVo;
 import jspboard.mybatis.SqlMapSessionFactory;
 
@@ -22,6 +25,7 @@ public class BoardServiceImpl implements BoardService {
 
 	private IBoardDao boardDao = new BoardDao();
 	private IBoardFileDao boardFileDao = new BoardFileDao();
+	private IBoardRepDao boardRepDao = new BoardRepDao();
 
 	/**
 	 * @FileName : BoardServiceImpl.java
@@ -72,6 +76,11 @@ public class BoardServiceImpl implements BoardService {
 		//첨부파일 조회
 		List<BoardFileVo> boardFileList = boardFileDao.getBoardFileList(sqlSession, boardVo.getBoardNo());
 		vo.setBoardFileList(boardFileList);
+		
+		//게시글 댓글 조회
+		List<BoardRepVo> boardRepList = boardRepDao.getBoardRepList(sqlSession, boardVo.getBoardNo());
+		vo.setBoardRepList(boardRepList);
+		
 		sqlSession.close();
 		
 		return vo;

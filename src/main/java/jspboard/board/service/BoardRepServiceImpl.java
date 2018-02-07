@@ -44,7 +44,7 @@ public class BoardRepServiceImpl implements BoardRepService {
   @Override
   public int insertBoardRep(BoardRepVo boardRepVo) {
     SqlSession sqlSession = SqlMapSessionFactory.getSqlSessionFactory().openSession();
-    int insertCnt = sqlSession.insert("jspboard.board.dao.insertBoardRep", boardRepVo);
+    int insertCnt = boardRepDao.insertBoardRep(sqlSession, boardRepVo);
     sqlSession.commit();
     sqlSession.close();
     return insertCnt;
@@ -62,7 +62,7 @@ public class BoardRepServiceImpl implements BoardRepService {
   @Override
   public int deleteBoardRep(int repNo) {
     SqlSession sqlSession = SqlMapSessionFactory.getSqlSessionFactory().openSession();
-    int deleteCnt = boardRepDao.delete, repNo);
+    int deleteCnt = boardRepDao.deleteBoardRep(sqlSession, repNo);
     sqlSession.commit();
     sqlSession.close();
     return deleteCnt;
@@ -80,7 +80,7 @@ public class BoardRepServiceImpl implements BoardRepService {
   @Override
   public int modifyBoardRep(BoardRepVo boardRepVo) {
     SqlSession sqlSession = SqlMapSessionFactory.getSqlSessionFactory().openSession();
-    int modifyCnt = sqlSession.update("jspboard.board.dao.modifyBoardRep", boardRepVo);
+    int modifyCnt = boardRepDao.modifyBoardRep(sqlSession, boardRepVo);
     sqlSession.commit();
     sqlSession.close();
     return modifyCnt;

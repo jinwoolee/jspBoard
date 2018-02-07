@@ -32,9 +32,7 @@ function initEvent(){
 	
 	//취소버튼 클릭 이벤트 핸들러
 	$("#cancel").on("click", function(){
-		$("#frm").attr("action", "/formBoardDetail");
-		$("#frm").attr("method", "get");
-		$("#frm").submit();
+		document.location="/formBoardDetail?boardNo=" + $("#frm input[name=boardNo]").val();
 	});
 	
 	//파일추가 버튼

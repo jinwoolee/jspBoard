@@ -38,8 +38,15 @@ INSERT INTO boardfile (fileno, boardno, fileorgnm, filenm, filepath, filetype, f
 INSERT INTO boardfile (fileno, boardno, fileorgnm, filenm, filepath, filetype, filesize) VALUES (2, 1, 'sally.png', 'sally.png', '/uploadFolder/', 'image/png', 5123);
 INSERT INTO boardfile (fileno, boardno, fileorgnm, filenm, filepath, filetype, filesize) VALUES (3, 1, 'cony.png', 'cony.png', '/uploadFolder/', 'image/png', 5123);
 
+INSERT INTO boardfile (fileno, boardno, fileorgnm, filenm, filepath, filetype, filesize) VALUES (4, 12, 'brown.png', 'brown.png', '/uploadFolder/', 'image/png', 5123);
+INSERT INTO boardfile (fileno, boardno, fileorgnm, filenm, filepath, filetype, filesize) VALUES (5, 12, 'sally.png', 'sally.png', '/uploadFolder/', 'image/png', 5123);
+INSERT INTO boardfile (fileno, boardno, fileorgnm, filenm, filepath, filetype, filesize) VALUES (6, 12, 'cony.png', 'cony.png', '/uploadFolder/', 'image/png', 5123);
+
 INSERT INTO boardrep (repNo, boardNo, content, delYn, regid, regdt) VALUES (1, 1, '첫번째 댓글입니다.', 'N', 'brown', sysdate);
-INSERT INTO boardrep (repNo, boardNo, content, delYn, regid, regdt) VALUES (2, 1, '두번째 댓글입니다.', 'N', 'brown', sysdate);
+INSERT INTO boardrep (repNo, boardNo, content, delYn, regid, regdt) VALUES (2, 1, '두번째 댓글입니다.', 'N', 'cony', sysdate);
+
+INSERT INTO boardrep (repNo, boardNo, content, delYn, regid, regdt) VALUES (3, 12, '첫번째 댓글입니다.', 'N', 'brown', sysdate);
+INSERT INTO boardrep (repNo, boardNo, content, delYn, regid, regdt) VALUES (4, 12, '두번째 댓글입니다.', 'N', 'cony', sysdate);
 
 --------------------------------초기 데이터 생성 END-------------------------------------------
 
