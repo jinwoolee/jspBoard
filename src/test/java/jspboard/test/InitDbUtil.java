@@ -4,6 +4,7 @@ import org.apache.commons.dbcp2.BasicDataSource;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Test;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.jdbc.datasource.init.DatabasePopulatorUtils;
 import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;

@@ -15,14 +15,31 @@ import jspboard.board.service.BoardService;
 import jspboard.board.service.BoardServiceImpl;
 
 /**
- * Servlet implementation class FormBoardServlet
+ * 게시물 리스트 서블릿
+ * FormBoardListServlet.java
+ * 
+ * @author jw
+ * @since 2018. 2. 7.
+ * @version 1.0
+ * @see
+ * 
+ * <pre>
+ * << 개정이력(Modification Information) >>
+ *   
+ *	  수정일  		수정자				수정내용		
+ *	----------		------		------------------------
+ *	2018. 2. 7.    jw				최초 생성
+ *
+ * </pre>
  */
 @WebServlet("/formBoardList")
 public class FormBoardListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	private BoardService boardService;
+	
 	public FormBoardListServlet() {
 		super();
+		boardService = new BoardServiceImpl();
 	}
 
 	/** 
@@ -50,14 +67,11 @@ public class FormBoardListServlet extends HttpServlet {
 
 		BoardVo boardVo = new BoardVo(categoryNo, page, 10);
 
-		BoardService boardService = new BoardServiceImpl();
-
 		Map<String, Object> resultMap = boardService.getBoardPagingList(boardVo);
 		request.setAttribute("boardList", resultMap.get("boardList"));
 		request.setAttribute("boardTotalCnt", resultMap.get("boardTotalCnt"));
 
 		// 게시판 페이징 처리
-
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/board/formBoardList.jsp");
 		rd.forward(request, response);
 	}

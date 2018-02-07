@@ -30,7 +30,7 @@ import jspboard.board.service.BoardRepServiceImpl;
  */
 @WebServlet("/formBoardRepDelete")
 public class FormBoardRepDeleteServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
     private BoardRepService boardRepService;
     
     public FormBoardRepDeleteServlet() {

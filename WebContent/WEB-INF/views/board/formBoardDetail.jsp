@@ -8,6 +8,7 @@
 
 <%@ include file="/WEB-INF/views/common/customCss.jsp" %>
 <%@ include file="/WEB-INF/views/common/jquery.jsp" %>
+<%@ include file="/WEB-INF/views/common/bootstrap.jsp" %>
 <script>
 $(function(){
 	initEvent();
@@ -55,14 +56,14 @@ function initEvent(){
 	$(".boardRepMod").on("click", function(){
 		var boardNo = $(this).data("boardno");
 		var repNo = $(this).data("repno");
-		var content = $(this).parent().find("textarea").val();
+		var content = $("#repNo_" + repNo + "_content").val();
+		 
+		$("#boardRepModifyFrm input[name=boardNo]").val(boardNo);
+		$("#boardRepModifyFrm input[name=repNo]").val(repNo);
+		$("#boardRepModifyFrm input[name=content]").val(content);
 		
-		$("#boardRepModify input[name=boardNo]").val(boardNo);
-		$("#boardRepModify input[name=repNo]").val(repNo);
-		$("#boardRepModify input[name=content]").val(content);
-		
-		$("#boardRepModify").attr("action", "/formBoardRepModify");
-		$("#boardRepModify").submit();
+		$("#boardRepModifyFrm").attr("action", "/formBoardRepModify");
+		$("#boardRepModifyFrm").submit();
 	});
 	
 	//게시물 댓글 삭제버튼 클릭 이벤트 핸들러
@@ -70,54 +71,120 @@ function initEvent(){
 		var boardNo = $(this).data("boardno");
 		var repNo = $(this).data("repno");
 		
-		$("#boardRepModify input[name=boardNo]").val(boardNo);
-		$("#boardRepModify input[name=repNo]").val(repNo);
+		$("#boardRepModifyFrm input[name=boardNo]").val(boardNo);
+		$("#boardRepModifyFrm input[name=repNo]").val(repNo);
 		
-		$("#boardRepModify").attr("action", "/formBoardRepDelete");
-		$("#boardRepModify").submit();
+		$("#boardRepModifyFrm").attr("action", "/formBoardRepDelete");
+		$("#boardRepModifyFrm").submit();
 	});
 }
 </script>
 </head>
 <body>
 
-제목 : ${boardVo.title } <br/>
-내용 : ${boardVo.content } <br/>
+<div class="container">
+    <div class="form-horizontal">
+	    <div class="form-group">
+	        <label class="col-sm-2 control-label" >제목</label>
+	        <div class="col-sm-10">
+                <label class="control-label">${boardVo.title }</label>
+            </div>
+	    </div>
+	    <div class="form-group">
+	        <label class="col-sm-2 control-label">내용</label>
+            <div class="col-sm-10">
+                <label class="control-label">${boardVo.content }</label>
+            </div>
+	    </div>
+    </div>
+    
+    <div class="form-horizontal">
+		<div class="form-group">
+            <label class="col-sm-2 control-label">첨부파일</label>
+			<div class="col-sm-10">
+                <ul id="boardFileList">
+                    <c:forEach var="boardFile" items="${boardVo.boardFileList }">
+                        <li>
+	                       <label class="control-label">
+	                           <a href="/fileDownload?fileNo=${boardFile.fileNo}" target="_blank"> ${boardFile.fileOrgNm }</a>
+	                       </label>
+	                    </li>
+			        </c:forEach>
+			    </ul>
+            </div>
+        </div>
+    </div>
 
-첨부파일 : 
-<ul id="boardFileList">
-    <c:forEach var="boardFile" items="${boardVo.boardFileList }">
-        <li><a href="/fileDownload?fileNo=${boardFile.fileNo}" target="_blank"> ${boardFile.fileOrgNm }</a></li>
-    </c:forEach>
-</ul>
+    <div class="form-horizontal">
+        <div class="form-group">
+            <label class="col-sm-2 control-label">댓글</label>
+            <div id="boardRepList" class="col-sm-10">
+                <c:forEach var="boardRep" items="${boardVo.boardRepList }">
+		          <c:choose>
+		              <c:when test="${boardRep.delYn == 'Y'}">
+                          <div class="form-group">
+                              <div class="col-sm-1">****</div>
+                              <div class="col-sm-11">삭제된 댓글입니다.</div>
+                          </div>
+		              </c:when>
+		              <c:when test="${boardRep.regId == userId}">
+		                  <div class="form-group">
+			                  <div class="col-sm-1">
+			                      ${boardRep.regId}
+			                  </div>
+			                  <div class="col-sm-6">
+			                      <textarea id="repNo_${boardRep.repNo}_content" name="content" rows="1" class="form-control">${boardRep.content}</textarea>
+			                  </div>
+			                  <div class="col-sm-5">
+	                            <button type="button" class="boardRepMod" data-boardno="${boardVo.boardNo}" data-repno="${boardRep.repNo}">수정</button>
+	                            <button type="button" class="boardRepDel" data-boardno="${boardVo.boardNo}" data-repno="${boardRep.repNo}">삭제</button>
+	                          </div>
+	                       </div>
+                        </c:when>
+                        <c:otherwise>
+                            <div class="form-group">
+                                <div class="col-sm-1">${boardRep.regId}</div>
+                                <div class="col-sm-11">${boardRep.content}</div>
+                            </div>
+                        </c:otherwise>
+                    </c:choose>
+                </c:forEach>
 
-<form id="boardRepModify" method="post" action="/formBoardModify">
-<input type="hidden" name="boardNo">
-<input type="hidden" name="repNo">
-<input type="hidden" name="conetnt">
+                <div class="form-horizontal">
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-6">
+		                <form id="boardRepFrm" method="post" action="/formBoardRep">
+				            <input type="hidden" name="boardNo" value="${boardVo.boardNo }">
+				            <textarea name="content" rows="1" class="form-control"></textarea>
+				        </form>
+			        </div>
+			        <div class="col-sm-5">
+			             <button id="boardRepReg" type="button">댓글입력</button>
+			        </div>
+		        </div>
+            </div>
+            
+            <br/>
+            
+            
+            <div class="form-horizontal">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-10">
+                    <button id="regist">답글</button>
+	                <button id="list">목록</button>
+	                <button id="modify">수정</button>
+	                <button id="delete">삭제</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<form id="boardRepModifyFrm" method="post" action="/formBoardRepModify">
+	<input type="hidden" name="boardNo">
+	<input type="hidden" name="repNo">
+	<input type="hidden" name="content">
 </form>
-
-<ul id="boardRepList">
-    <c:forEach var="boardRep" items="${boardVo.boardRepList }">
-        <li><c:choose>
-        			<c:when test="${boardRep.regId == userId}">
-        				${boardRep.regId} : <textarea name="content">${boardRep.content}</textarea>
-        				<button type="button" class="boardRepMod" data-boardno="${board.boardNo}" data-repno="${boardRep.repNo}">수정</button>
-        				<button type="button" class="boardRepDel" data-boardno="${board.boardNo}" data-repno="${boardRep.repNo}">삭제</button>
-        			</c:when>
-        			<c:otherwise>
-        				${boardRep.regId} : ${boardRep.content}
-        			</c:otherwise>
-        		</c:choose>
-        	</li>
-    </c:forEach>
-    <form id="boardRepFrm" method="post" action="/formBoardRep">
-    		<input type="hidden" name="boardNo" value="${boardVo.boardNo }">
-	    	<textarea name="content"></textarea>
-	    	<button id="boardRepReg" type="button">댓글입력</button>
-    	</form>
-</ul>
-
 
 
 <form id="frm">
@@ -126,9 +193,5 @@ function initEvent(){
 	<%--<input type="hidden" name="page" value=${page }>
 	<input type="hidden" name="pageSize" value=${pageSize }> --%>
 </form>
-<button id="regist">답글</button>
-<button id="list">목록</button>
-<button id="modify">수정</button>
-<button id="delete">삭제</button>
 </body>
 </html>

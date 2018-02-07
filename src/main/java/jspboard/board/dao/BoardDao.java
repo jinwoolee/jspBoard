@@ -36,7 +36,10 @@ public class BoardDao implements IBoardDao {
 	  List<BoardVo> boardVoList = sqlSession.selectList("jspboard.board.dao.getBoardPagingList", boardVo);
 	  for(BoardVo vo : boardVoList) {
 	    for(int i = 1; i < vo.getLv(); i++) {
-	      vo.setTitle("&nbsp;&nbsp;&nbsp;" + vo.getTitle());
+	      if(i == 1)
+	        vo.setTitle("&nbsp;&nbsp;&nbsp;<img src=\"/img/ioc-reply.gif\">" + vo.getTitle());
+	      else
+	        vo.setTitle("&nbsp;&nbsp;&nbsp;" + vo.getTitle());
 	    }
 	  }
 		return boardVoList;
