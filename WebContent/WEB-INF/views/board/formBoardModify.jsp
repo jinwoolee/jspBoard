@@ -8,6 +8,7 @@
 
 <%@ include file="/WEB-INF/views/common/customCss.jsp" %>
 <%@ include file="/WEB-INF/views/common/jquery.jsp" %>
+<%@ include file="/WEB-INF/views/common/bootstrap.jsp" %>
 <script src="/SE2/js/HuskyEZCreator.js"></script>
 <script>
 var oEditors = [];
@@ -79,29 +80,59 @@ function seSetting(){
 </head>
 <body>
 
-
-<form id="frm" enctype="multipart/form-data">
-<input type="hidden" name="boardNo" value="${boardVo.boardNo }">
-제목 : <input type="text" name="title" value="${boardVo.title }"> <br/>
-내용 : <textarea id="content" name="content" rows="10" cols="100" style="width:766px; height:352px;">${boardVo.content }</textarea> <br>
-
-첨부파일 : 
-<ul id="boardFileList">
-    <c:forEach var="boardFile" items="${boardVo.boardFileList }">
-        <li>
-            <a href="/formBaordFileDelete?fileNo=${boardFile.fileNo}" target="_blank"> ${boardFile.fileOrgNm }</a>
-            <button class="fileDelete" type="button" data-boardno="${boardVo.boardNo}" data-fileno="${boardFile.fileNo}">삭제</button>
-        </li>
-    </c:forEach>
-</ul>
-
-<button id="modify" type="button">수정</button>
-<button id="cancel" type="button">취소</button>
-<button id="addFileInput" type="button">파일추가(최대5개)</button>
-<div id="fileDiv">
-	<input type="file" name="uploadFile"><br>
+<div class="container">
+    <div class="form-horizontal">
+    
+		<form id="frm" enctype="multipart/form-data">
+			<input type="hidden" name="boardNo" value="${boardVo.boardNo }">
+			<div class="form-group">
+				<label class="col-sm-2 control-label" >제목</label>
+		        <div class="col-sm-10">
+	                <input type="text" name="title" value="${boardVo.title }">
+	            </div>
+		    </div>
+		
+			<div class="form-group">
+				<label class="col-sm-2 control-label" >내용</label>
+		        <div class="col-sm-10">
+	                <textarea id="content" name="content" rows="10" cols="100" style="width:766px; height:352px;">${boardVo.content }</textarea>
+	            </div>
+		    </div>
+		    
+		    <div class="form-horizontal">
+				<div class="form-group">
+					<label class="col-sm-2 control-label">첨부파일</label>
+					<div class="col-sm-10">
+		                <ul id="boardFileList">
+		                    <c:forEach var="boardFile" items="${boardVo.boardFileList }">
+		                        <li>
+			                       <label class="control-label">
+										<a href="/formBaordFileDelete?fileNo=${boardFile.fileNo}" target="_blank"> ${boardFile.fileOrgNm }</a>
+		            						<button class="fileDelete" type="button" data-boardno="${boardVo.boardNo}" data-fileno="${boardFile.fileNo}">삭제</button>
+			                       </label>
+			                    </li>
+					        </c:forEach>
+					    </ul>
+		            </div>
+		        </div>
+		    </div>
+		    
+			<div class="form-horizontal">
+				<div class="form-group">
+					<label class="col-sm-2 control-label"></label>
+					<div class="col-sm-10">
+						<button id="modify" type="button">수정</button>
+						<button id="cancel" type="button">취소</button>
+						<button id="addFileInput" type="button">파일추가(최대5개)</button>
+						<div id="fileDiv">
+							<input type="file" name="uploadFile"><br>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
 </div>
-</form>
 
 <form id="formBaordFileDelete" action="/formBaordFileDelete" method="post">
     <input type="hidden" name="boardNo" >

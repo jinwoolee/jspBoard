@@ -3,3 +3,7 @@
 .pointer{
 	cursor : pointer;
 }
+
+.container {
+	padding-top:30px;
+}

@@ -151,30 +151,31 @@ function initEvent(){
                 </c:forEach>
 
                 <div class="form-horizontal">
-                    <div class="col-sm-1"></div>
-                    <div class="col-sm-6">
-		                <form id="boardRepFrm" method="post" action="/formBoardRep">
-				            <input type="hidden" name="boardNo" value="${boardVo.boardNo }">
-				            <textarea name="content" rows="1" class="form-control"></textarea>
-				        </form>
-			        </div>
-			        <div class="col-sm-5">
-			             <button id="boardRepReg" type="button">댓글입력</button>
-			        </div>
+                		<div class="form-group">
+	                    <div class="col-sm-1"></div>
+	                    <div class="col-sm-6">
+			                <form id="boardRepFrm" method="post" action="/formBoardRep">
+					            <input type="hidden" name="boardNo" value="${boardVo.boardNo }">
+					            <textarea name="content" rows="1" class="form-control"></textarea>
+					        </form>
+				        </div>
+				        <div class="col-sm-5">
+				             <button id="boardRepReg" type="button">댓글입력</button>
+				        </div>
+				    </div>
 		        </div>
             </div>
-            
-            <br/>
-            
-            
+          
             <div class="form-horizontal">
-                <div class="col-sm-2"></div>
-                <div class="col-sm-10">
-                    <button id="regist">답글</button>
-	                <button id="list">목록</button>
-	                <button id="modify">수정</button>
-	                <button id="delete">삭제</button>
-                </div>
+	    			<div class="form-group">
+	                <div class="col-sm-2"></div>
+	                <div class="col-sm-10">
+	                    <button id="regist">답글</button>
+		                <button id="list">목록</button>
+		                <button id="modify">수정</button>
+		                <button id="delete">삭제</button>
+	                </div>
+				</div> 
             </div>
         </div>
     </div>
