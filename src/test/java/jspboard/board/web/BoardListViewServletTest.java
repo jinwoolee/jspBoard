@@ -22,8 +22,8 @@ import org.springframework.mock.web.MockHttpServletResponse;
 import jspboard.board.model.BoardVo;
 import jspboard.test.InitDbUtil;
 
-public class FormBoardListServletTest extends InitDbUtil{
-	private Logger logger = LoggerFactory.getLogger(FormBoardListServletTest.class);
+public class BoardListViewServletTest extends InitDbUtil{
+	private Logger logger = LoggerFactory.getLogger(BoardListViewServletTest.class);
 
 	// mocking test fail ㅠ_ㅠ
 	public void doGetTest() throws Exception {
@@ -36,7 +36,7 @@ public class FormBoardListServletTest extends InitDbUtil{
 		when(response.getWriter()).thenReturn(printWriter);
 
 		/*** When ***/
-		new FormBoardListServlet().doGet(request, response);
+		new BoardListViewServlet().doGet(request, response);
 
 		/*** Then ***/
 		logger.debug("{}", stringWriter.getBuffer().toString());
@@ -49,7 +49,7 @@ public class FormBoardListServletTest extends InitDbUtil{
 		HttpServletResponse response = new MockHttpServletResponse();
 
 		/*** When ***/
-		new FormBoardListServlet().doGet(request, response);
+		new BoardListViewServlet().doGet(request, response);
 
 		/*** Then ***/
 		List<BoardVo> boardList = (List<BoardVo>) request.getAttribute("boardList");

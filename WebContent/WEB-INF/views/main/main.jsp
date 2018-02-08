@@ -55,7 +55,6 @@
 		<div class="row">
 			<div class="col-sm-3 col-md-2 sidebar">
 				<ul class="nav nav-sidebar">
-					<li id="formBoard" class="pointer"><a>게시판 리스트 (form)</a></li>
 					<li id="ajaxBoard" class="pointer"><a>게시판 리스트 (ajax)</a></li>
 				</ul>
 			</div>

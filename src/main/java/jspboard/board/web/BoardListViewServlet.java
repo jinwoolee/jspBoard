@@ -32,12 +32,12 @@ import jspboard.board.service.BoardServiceImpl;
  *
  * </pre>
  */
-@WebServlet("/formBoardList")
-public class FormBoardListServlet extends HttpServlet {
+@WebServlet("/boardList")
+public class BoardListViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private BoardService boardService;
 	
-	public FormBoardListServlet() {
+	public BoardListViewServlet() {
 		super();
 		boardService = new BoardServiceImpl();
 	}
