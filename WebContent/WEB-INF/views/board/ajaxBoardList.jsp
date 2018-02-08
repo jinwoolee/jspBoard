@@ -13,10 +13,20 @@
 <script>
 $(function() {
 	initEvent();
+	page(1);
 });
 
+function 
+
 function page(page){
-	document.location = '/formBoardList?page=' + page;
+	$.ajax({
+		method : get,
+		url : "",
+		data : ,
+		success : function(data){
+				
+		}
+	})
 }
 
 function initEvent() {
