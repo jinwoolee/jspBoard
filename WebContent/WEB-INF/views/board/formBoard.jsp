@@ -7,6 +7,7 @@
 
 <%@ include file="/WEB-INF/views/common/customCss.jsp"%>
 <%@ include file="/WEB-INF/views/common/jquery.jsp"%>
+<%@ include file="/WEB-INF/views/common/bootstrap.jsp" %>
 <script src="/SE2/js/HuskyEZCreator.js"></script>
 <script>
 var oEditors = [];
@@ -76,19 +77,48 @@ function seSetting(){
 </script>
 </head>
 <body>
-<form id="frm" method="post" action="/formBoard" enctype="multipart/form-data">
-제목 : <input type="text" name="title" /> <br>
-내용 : <textarea id="content" name="content" rows="10" cols="100" style="width:766px; height:352px;"></textarea> <br>
-	<button id="save" type="button">저장</button>
-	<button id="cancel">취소</button>
-	<button id="addFileInput" type="button">파일추가(최대5개)</button>
-	<div id="fileDiv">
-		<input type="file" name="uploadFile"><br>
-	</div>
 
-	<input type="hidden" name="pboardNo" value="${param.pboardNo}">
-	<input type="hidden" name="categoryNo" value="${param.categoryNo}">
-	<input type="hidden" name="ord" value="0">
-</form>
+<div class="container">
+    <div class="form-horizontal">
+        <form id="frm" method="post" action="/formBoard" enctype="multipart/form-data">
+            <input type="hidden" name="pboardNo" value="${param.pboardNo}">
+		    <input type="hidden" name="categoryNo" value="${param.categoryNo}">
+		    <input type="hidden" name="ord" value="0">
+            <div class="form-group">
+                <label class="col-sm-2 control-label" >제목</label>
+                <div class="col-sm-10">
+                    <input type="text" name="title">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label" >내용</label>
+                <div class="col-sm-10">
+                    <textarea id="content" name="content" rows="10" cols="100" style="width:766px; height:352px;"></textarea>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label" ></label>
+                <div class="col-sm-10">
+                    <button id="save" type="button" class="btn btn-default">저장</button>
+				    <button id="cancel" type="button" class="btn btn-default">취소</button>
+				    <button id="addFileInput" type="button" class="btn btn-default">파일추가(최대5개)</button>
+                </div>
+            </div>
+            
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">첨부파일</label>
+                    <div class="col-sm-10">
+                        <div id="fileDiv">
+					        <input type="file" name="uploadFile" class="btn btn-default"><br>
+					    </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
 </body>
 </html>

@@ -15,6 +15,10 @@ $(function() {
 	initEvent();
 });
 
+function page(page){
+	document.location = '/formBoardList?page=' + page;
+}
+
 function initEvent() {
 	//게시글 tr 클릭
 	$(".boardTr").on("click", function() {
@@ -63,7 +67,7 @@ function initEvent() {
 									<td>${board.boardNo}</td>
 									<td>${board.title}</td>
 									<td>${board.regId}</td>
-									<td><fmt:formatDate value="${board.regDt}" pattern="(yyyy) MM-dd" /></td>
+									<td><fmt:formatDate value="${board.regDt}" pattern="yyyy-MM-dd" /></td>
 								</tr>
 							</c:otherwise>
 						</c:choose>
@@ -71,8 +75,17 @@ function initEvent() {
 				</tbody>
 			</table>
 		</form>
-	   <button id="regist">등록</button>
-	   </div>
-    </div>
+		
+		<div >
+            <div class="col-sm-12">
+                <div class="text-center">
+                    <ul class="pagination">${pageNav }</ul>
+                    <button id="regist" class="btn btn-default pull-right">등록</button>
+                </div>
+	           
+	        </div>
+        </div>
+   </div>
+</div>
 </body>
 </html>

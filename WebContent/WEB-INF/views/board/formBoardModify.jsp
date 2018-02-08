@@ -108,7 +108,7 @@ function seSetting(){
 		                        <li>
 			                       <label class="control-label">
 										<a href="/formBaordFileDelete?fileNo=${boardFile.fileNo}" target="_blank"> ${boardFile.fileOrgNm }</a>
-		            						<button class="fileDelete" type="button" data-boardno="${boardVo.boardNo}" data-fileno="${boardFile.fileNo}">삭제</button>
+		            					<button class="fileDelete" type="button" class="btn btn-default" data-boardno="${boardVo.boardNo}" data-fileno="${boardFile.fileNo}">삭제</button>
 			                       </label>
 			                    </li>
 					        </c:forEach>
@@ -121,11 +121,11 @@ function seSetting(){
 				<div class="form-group">
 					<label class="col-sm-2 control-label"></label>
 					<div class="col-sm-10">
-						<button id="modify" type="button">수정</button>
-						<button id="cancel" type="button">취소</button>
-						<button id="addFileInput" type="button">파일추가(최대5개)</button>
+						<button id="modify" type="button" class="btn btn-default">수정</button>
+						<button id="cancel" type="button" class="btn btn-default">취소</button>
+						<button id="addFileInput" type="button" class="btn btn-default">파일추가(최대5개)</button>
 						<div id="fileDiv">
-							<input type="file" name="uploadFile"><br>
+							<input type="file" name="uploadFile" class="btn btn-default"><br>
 						</div>
 					</div>
 				</div>

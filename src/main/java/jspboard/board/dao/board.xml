@@ -4,7 +4,7 @@
 
 <!-- 게시판 카테고리 리스트 -->
 <select id="getBoardPagingList" resultType="boardVo" parameterType="boardVo" >
-	SELECT a.* --lpad(' ', (lv-1)*4, ' ') || a.title as title
+	SELECT a.*
 	 FROM 
 	    (SELECT a.*, ROWNUM rn
 	       FROM 

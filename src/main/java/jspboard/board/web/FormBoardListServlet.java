@@ -70,6 +70,7 @@ public class FormBoardListServlet extends HttpServlet {
 		Map<String, Object> resultMap = boardService.getBoardPagingList(boardVo);
 		request.setAttribute("boardList", resultMap.get("boardList"));
 		request.setAttribute("boardTotalCnt", resultMap.get("boardTotalCnt"));
+		request.setAttribute("pageNav", resultMap.get("pageNav"));
 
 		// 게시판 페이징 처리
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/board/formBoardList.jsp");

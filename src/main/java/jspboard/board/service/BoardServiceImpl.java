@@ -50,14 +50,42 @@ public class BoardServiceImpl implements BoardService {
 		// 게시물 전체 건수 조회
 		Integer boardTotalCnt = boardDao.getBoardTotalCnt(sqlSession, boardVo);
 
+		//페이지 네비게이션
+		String pageNav = makePageNav(boardTotalCnt.intValue(), boardVo.getPage().intValue());
+		
 		resultMap.put("boardList", boardList);
 		resultMap.put("boardTotalCnt", boardTotalCnt);
+		resultMap.put("pageNav", pageNav);
 
 		sqlSession.close();
 		return resultMap;
 	}
 
-	/**
+	/** 
+	 * Method   : makePageNav
+	 * 최초작성일  : 2018. 2. 8. 
+	 * 작성자 : jw
+	 * 변경이력 : 
+	 * @param intValue
+	 * @param page
+	 * @return 
+	 * Method 설명 : 페이지 내비게이션
+	 */
+	public String makePageNav(int boardTotalCnt, int page) {
+	  final int NUM_OF_PAGE_AT_NAVI = 10;
+	  double totalPage = Math.ceil((double)boardTotalCnt/(double)NUM_OF_PAGE_AT_NAVI);
+	  
+	  String pageNav = "";
+	  for(int i = 1; i <= totalPage; i++) {
+	    if(page == i)
+	      pageNav += "<li class=\"active\" ><a href=\"javascript:page('"+i + "');\">"+ i + "</a></li>";
+	    else
+	      pageNav += "<li><a href=\"javascript:page('"+i + "');\">"+ i + "</a></li>";
+	  }
+    return pageNav;
+  }
+
+  /**
 	 * @FileName : BoardServiceImpl.java
 	 * @Project : jspBoard
 	 * @Date : 2018. 1. 29.
@@ -98,16 +126,22 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public int modifyBoard(BoardVo boardVo, List<BoardFileVo> boardFileList) {
 		SqlSession sqlSession = SqlMapSessionFactory.getSqlSessionFactory().openSession();
-		int modifyCnt = boardDao.modifyBoard(sqlSession, boardVo);
+		int modifyCnt = 0;
 		
-		if(boardFileList != null) {
-	  		for(BoardFileVo boardFileVo : boardFileList) {
-	  			boardFileVo.setBoardNo(boardVo.getBoardNo());
-	  			boardFileDao.insertBoardFile(sqlSession, boardFileVo);
-	  		}
+		try {
+		  modifyCnt = boardDao.modifyBoard(sqlSession, boardVo);
+	    
+	    if(boardFileList != null) {
+  	      for(BoardFileVo boardFileVo : boardFileList) {
+  	        boardFileVo.setBoardNo(boardVo.getBoardNo());
+  	        boardFileDao.insertBoardFile(sqlSession, boardFileVo);
+  	      }
+  	  }
+	    sqlSession.commit();
+		}catch(Exception e) {
+		  sqlSession.rollback();
 		}
 		
-		sqlSession.commit();
 		sqlSession.close();
 		
 		return modifyCnt;
@@ -126,9 +160,15 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public int deleteBoard(BoardVo boardVo) {
 	  SqlSession sqlSession = SqlMapSessionFactory.getSqlSessionFactory().openSession();
-		int deleteCnt = boardDao.deleteBoard(sqlSession, boardVo);
-		boardFileDao.deleteBoardFile(sqlSession, boardVo.getBoardNo());
-		sqlSession.commit();
+	  
+	  int deleteCnt = 0;
+	  try {
+	    deleteCnt = boardDao.deleteBoard(sqlSession, boardVo);
+	    boardFileDao.deleteBoardFile(sqlSession, boardVo.getBoardNo());
+	    sqlSession.commit();
+	  }catch(Exception e) {
+	    sqlSession.rollback();
+	  }
 		sqlSession.close();
 
 		return deleteCnt;
@@ -148,16 +188,21 @@ public class BoardServiceImpl implements BoardService {
 	public int insertBoard(BoardVo boardVo, List<BoardFileVo> boardFileList) {
 		SqlSession sqlSession = SqlMapSessionFactory.getSqlSessionFactory().openSession();
 
-		int insertCnt = sqlSession.insert("jspboard.board.dao.insertBoard", boardVo);
-		
-		if(boardFileList != null) {
-	  		for(BoardFileVo boardFileVo : boardFileList) {
-	  			boardFileVo.setBoardNo(boardVo.getBoardNo());
-	  			boardFileDao.insertBoardFile(sqlSession, boardFileVo);
-	  		}
+		int insertCnt=0;
+
+		try {
+		  insertCnt = sqlSession.insert("jspboard.board.dao.insertBoard", boardVo);
+		  if(boardFileList != null) {
+          for(BoardFileVo boardFileVo : boardFileList) {
+            boardFileVo.setBoardNo(boardVo.getBoardNo());
+            boardFileDao.insertBoardFile(sqlSession, boardFileVo);
+          }
+      }
+		  sqlSession.commit();
+		}catch(Exception e) {
+		  sqlSession.rollback();
 		}
 		
-		sqlSession.commit();
 		sqlSession.close();
 
 		return insertCnt;
@@ -176,8 +221,15 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public int deleteBoardFile(int fileNo) {
 		SqlSession sqlSession = SqlMapSessionFactory.getSqlSessionFactory().openSession();
-		int deleteCnt = boardFileDao.deleteBoardFile(sqlSession, fileNo);
-		sqlSession.commit();
+		int deleteCnt = 0;
+		
+		try {
+		  deleteCnt = boardFileDao.deleteBoardFile(sqlSession, fileNo);
+		  sqlSession.commit();
+		}catch(Exception e) {
+		  sqlSession.rollback();
+		}
+		
 		sqlSession.close();
 		
 		return deleteCnt;

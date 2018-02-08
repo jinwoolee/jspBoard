@@ -136,8 +136,8 @@ function initEvent(){
 			                      <textarea id="repNo_${boardRep.repNo}_content" name="content" rows="1" class="form-control">${boardRep.content}</textarea>
 			                  </div>
 			                  <div class="col-sm-5">
-	                            <button type="button" class="boardRepMod" data-boardno="${boardVo.boardNo}" data-repno="${boardRep.repNo}">수정</button>
-	                            <button type="button" class="boardRepDel" data-boardno="${boardVo.boardNo}" data-repno="${boardRep.repNo}">삭제</button>
+	                            <button type="button" class="boardRepMod btn btn-default" data-boardno="${boardVo.boardNo}" data-repno="${boardRep.repNo}">수정</button>
+	                            <button type="button" class="boardRepDel btn btn-default" data-boardno="${boardVo.boardNo}" data-repno="${boardRep.repNo}">삭제</button>
 	                          </div>
 	                       </div>
                         </c:when>
@@ -160,20 +160,20 @@ function initEvent(){
 					        </form>
 				        </div>
 				        <div class="col-sm-5">
-				             <button id="boardRepReg" type="button">댓글입력</button>
+				             <button id="boardRepReg" type="button" class="btn btn-default">댓글입력</button>
 				        </div>
 				    </div>
 		        </div>
             </div>
-          
+
             <div class="form-horizontal">
 	    			<div class="form-group">
 	                <div class="col-sm-2"></div>
 	                <div class="col-sm-10">
-	                    <button id="regist">답글</button>
-		                <button id="list">목록</button>
-		                <button id="modify">수정</button>
-		                <button id="delete">삭제</button>
+	                    <button id="regist" type="button" class="btn btn-default">답글</button>
+		                <button id="list" type="button" class="btn btn-default">목록</button>
+		                <button id="modify" type="button" class="btn btn-default">수정</button>
+		                <button id="delete" type="button" class="btn btn-default">삭제</button>
 	                </div>
 				</div> 
             </div>
